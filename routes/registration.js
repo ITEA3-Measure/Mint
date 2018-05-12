@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var http = require('http');
+var models  = require('../models');
 var propertiesReader = require('properties-reader');
 var properties = propertiesReader('./config/config.ini');
 var property = properties.get('dev.measure-platform.url');
@@ -51,6 +52,43 @@ router.get('/', function(req, res, next) {
 
     req.end();
     res.send(req.output);
+});
+
+router.post('/:project', function (req, res, next) {
+    console.log("POST");
+    /*console.log("req.body.name " + req.body.project);*/
+    models.Project.sync({force: true}).then(function () {
+        models.Project.create({
+            name: "asdfasdfsadf",
+            measureProjectId: 333, //req.body.project,
+            include: [
+                {model: models.Efsm,
+                    require: false},
+                {model: models.Project,
+                    require: false}
+            ]
+        }).then(function (project) {
+            var machines = models.Efsm.findAll();
+            for(var i=0; i<machines.length; i++) {
+                models.Analysis.create({
+                    name: machines[i].name,
+                    description: machines[i].description,
+                    customThreshold: machines[i].threshold,
+                    customMessage: machines[i].message,
+                    project: project,
+                    efsm: machines[i]
+                });
+            }
+        });
+    });
+    /*console.log("POST");
+    console.log("req.body.name " + req.body.name);
+    var name = req.body.name;
+    var projectId;
+    var machineId;
+    var analysis = new models.Analysis({
+        name: name
+    });*/
 });
 
 module.exports = router;

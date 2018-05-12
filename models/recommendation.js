@@ -1,6 +1,6 @@
 "use strict";
 module.exports = function (sequelize, DataTypes) {
-    var Analysis = sequelize.define('Analysis', {
+    var Recommendation = sequelize.define('Recommendation', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -8,16 +8,9 @@ module.exports = function (sequelize, DataTypes) {
             autoIncrement: true,
             unique: true
         },
-        status: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        name: DataTypes.STRING,
+        message: DataTypes.STRING,
         description: DataTypes.STRING,
-        isSchedule: DataTypes.BOOLEAN,
-        customThreshold: DataTypes.DOUBLE,
-        customMessage: DataTypes.STRING,
+        status: DataTypes.STRING,
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE,
@@ -30,21 +23,14 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    Analysis.associate = function (models) {
-        models.Analysis.belongsTo(models.Project, {
+    Recommendation.associate = function (models) {
+        models.Recommendation.belongsTo(models.Analysis, {
             onDelete: "CASCADE",
             foreignKey: {
                 allowNull: false
             }
         });
-        models.Analysis.belongsTo(models.Efsm, {
-            onDelete: "CASCADE",
-            foreignKey: {
-                allowNull: false
-            }
-        });
-        models.Analysis.hasMany(models.Recommendation);
     };
 
-    return Analysis;
+    return Recommendation;
 };

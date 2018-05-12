@@ -12,42 +12,37 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="/stylesheets/grid.css" >
 </head>
 <body>
 <div class="container">
-    <div class="nav justify-content-end">
-        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-            <i class="fas fa-plus"></i>
-        </button>
-    </div>
-
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" data-id="">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Recommendator</h5>
+                    <h5 class="modal-title" id="editModalLabel">Edit Machine</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+                    <!--<form action="/configure/analysis/analysis[i].id" method="post">-->
                     <form action="" method="post">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Name</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter analysis name">
+                            <label>Machine Name</label>
+                            <input type="text" class="form-control" placeholder="Enter machine name" id="machineName" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Machine</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                            <label>Machine Description</label>
+                            <textarea class="form-control" rows="3" id="machineDescription" name="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Recommendation Text</label>
+                            <textarea class="form-control" rows="3" id="machineRecommendation"></textarea>
+                        </div>
+                        <div class="form-group" style="width: 5em;">
+                            <label >Threshold</label>
+                            <input type="text" class="form-control" id="machineThreshold">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -57,38 +52,60 @@
                 </div>
             </div>
         </div>
-    </div>
-    <br>
-    <div class="container">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Machine Name</th>
-                <th scope="col">Status</th>
-                <th scope="col">Options</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for(var i=0; i<analysis.length; i++) {%>
-            <tr>
-                <th scope="row"><%= analysis[i].id %></th>
-                <td><%= analysis[i].Efsm.name %></td>
-                <td>-</td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-dark btn-sm"><i class="fas fa-pencil-alt"></i></button>
-                        <button type="button" class="btn btn-dark btn-sm"><i class="fa fa-trash"></i></button>
-                    </div>
-                </td>
-            </tr>
+    </div><!-- end Modal -->
+</div> <!-- /container -->
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Machine Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Role</th>
+            <th scope="col">Status</th>
+            <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0; i<analysis.length; i++) {%>
+            <% if (analysis[i].status){ %>
+            <tr class="table-success">
+            <% } else{ %>
+            <tr class="table-dark">
             <% } %>
-            </tbody>
-        </table>
-    </div>
+            <th scope="row"><%= analysis[i].id %></th>
+            <td><%= analysis[i].name %></td>
+            <td><%= analysis[i].description %></td>
+            <td><%= analysis[i].Efsm.category %></td>
+            <td><%= analysis[i].Efsm.role %></td>
+            <td>
+                <% if (analysis[i].status){ %>
+                On
+                    <% } else{ %>
+                Off
+                    <% } %>
+            </td>
+            <td>
+                <button type="button" class="btn btn-sm edit-machine" data-toggle="modal" data-target="#editModal" data-id="<%= analysis[i].id %>">
+                    <i class="fas fa-pencil-alt" ></i>
+                </button>
+                <% if (analysis[i].status){ %>
+                <button type="button" class="btn btn-success btn-sm turn-off" data-id="<%= analysis[i].id %>"><i class="fa fa-toggle-off" aria-hidden="true"> Turn Off</i></button>
+                <% } else{ %>
+                <button type="button" class="btn btn-danger btn-sm turn-on" data-id="<%= analysis[i].id %>"><i class="fa fa-toggle-on" aria-hidden="true"> Turn On</i></button>
+                <% } %>
+            </td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
 </div> <!-- /container -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/javascripts/global.js"></script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>

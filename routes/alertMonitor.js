@@ -1,23 +1,15 @@
 var express = require('express');
-var router = express.Router();
 var http = require('http');
 var propertiesReader = require('properties-reader');
-var properties = propertiesReader('../config/config.ini');
+var properties = propertiesReader('./config/config.ini');
 var property = properties.get('dev.measure-platform.url');
 var CronJob = require('cron').CronJob;
+var models  = require('../models');
 
-var job1 = new CronJob({
-    cronTime: '*/1 * * * *',
-    onTick: function() {
-        console.log('job 1 ticked');
-    },
-    start: false
-});
-
-var job2 = new CronJob({
+var registerTool = new CronJob({
     cronTime: '*/1 * * * * *',
     onTick: function() {
-        console.log('job 2 ticked');
+        //console.log('job 2 ticked');
 
         var headers = {
             'Content-Type': 'application/json'
@@ -33,16 +25,16 @@ var job2 = new CronJob({
         // AlertReport alerts = restTemplate.getForObject(serverURL + "api/analysis/alert/list/?id=" + analysisToolId,AlertReport.class);
 
         http.get(options, function (res) {
-            console.log('STATUS: ' + res.statusCode);
-            console.log('HEADERS: ' + JSON.stringify(res.headers));
+            // console.log('STATUS: ' + res.statusCode);
+            // console.log('HEADERS: ' + JSON.stringify(res.headers));
             res.setEncoding('utf8');
             var body = '';
             res.on("data", function (data) {
-                console.log("BODY data: " + data);
+                // console.log("BODY data: " + data);
                 body += data;
             });
             res.on('end', function() {
-                console.log("BODY end: " + body);
+                // console.log("BODY end: " + body);
                 body = JSON.parse(body);
                 var alerts = body.alerts;
                 alerts.forEach(function (alert) {
@@ -61,21 +53,19 @@ var job2 = new CronJob({
                         });
                         configurate(projectId, analysisId);
                     }
+                    else if(alert.alertType == "ANALYSIS_DESABLE") {
+                        // delete project and analysis
+                        var analysisId;
+                        var projectId = alert.projectId;
+                        var properties = alert.properties;
+                        deleteProject(projectId);
+                    }
 
                 });
 
-                console.log("--BODY 2 : " + body);
+                // console.log("--BODY 2 : " + body);
             });
         });
-
-/*        req.on('error', function(e) {
-            console.log('problem with request: ' + e.message);
-        });
-
-        req.write(json);
-
-        req.end();
-        res.send(req.output);*/
     },
     start: false,
     timeZone: 'America/Los_Angeles'
@@ -86,44 +76,82 @@ function configurate(projectId, projectAnalysisId) {
     console.log("projectId " + projectId);
     console.log("projectAnalysisId " + projectAnalysisId);
 
-    var json = JSON.stringify({
-        "projectAnalysisId": projectAnalysisId,
-        "viewUrl": properties.get('dev.analysis-tool.historyURL')+projectId,
-        "configurationUrl": properties.get('dev.analysis-tool.configureURL')+projectId
-    });
-    console.log("JSON: " + json);
-    var headers = {
-        'Content-Type': 'application/json',
-        'Content-Length': json.length
-    };
-    var options = {
-        host : 'localhost',
-        port : 8085,
-        path : '/api/analysis/configure',
-        method : 'PUT',
-        headers: headers
-    };
-    var req = http.request(options, function (res) {
-        console.log('CONFIG STATUS: ' + res.statusCode);
-        console.log('CONFIG HEADERS: ' + JSON.stringify(res.headers));
-        res.setEncoding('utf8');
-        var output = '';
-        res.on("data", function (data) {
-            console.log("CONFIG BODY: " + data);
-            output += data;
+    // create project in local DB and Analysis
+    var projectValues = {
+        name: "",
+        measureProjectId: projectId,
+    }
+
+    models.Project.findOrCreate({
+        where: {measureProjectId: projectId},
+        defaults: {name : ""}
+    }).spread(function (project, created) {
+        console.log("PROYECT CREATED");
+        if(created) {
+            models.Efsm.findAll().then(function (machines) {
+                machines.forEach(function (machine) {
+                    console.log("creating analysis for machine " + machine);
+                    models.Analysis.create({
+                        status : false,
+                        name: machine.name,
+                        description: machine.get('description'),
+                        customThreshold: machine.get('threshold'),
+                        customMessage: machine.get('message'),
+                        ProjectId: project.get('id'),
+                        EfsmId: machine.get('id')
+                    })
+                })
+            })
+        }
+
+        var json = JSON.stringify({
+            "projectAnalysisId": projectAnalysisId,
+            "viewUrl": properties.get('dev.analysis-tool.historyURL')+project.get('id'),
+            "configurationUrl": properties.get('dev.analysis-tool.configureURL')+project.get('id')
         });
-    });
+        console.log("JSON: " + json);
 
-    req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
-    });
+        var headers = {
+            'Content-Type': 'application/json',
+            'Content-Length': json.length
+        };
 
-    req.write(json);
+        var options = {
+            host : 'localhost',
+            port : 8085,
+            path : '/api/analysis/configure',
+            method : 'PUT',
+            headers: headers
+        };
 
-    req.end();
+        var req = http.request(options, function (res) {
+            console.log('CONFIG STATUS: ' + res.statusCode);
+            console.log('CONFIG HEADERS: ' + JSON.stringify(res.headers));
+            res.setEncoding('utf8');
+            var output = '';
+            res.on("data", function (data) {
+                console.log("CONFIG BODY: " + data);
+                output += data;
+            });
+        });
+
+        req.on('error', function(e) {
+            console.log('problem with request: ' + e.message);
+        });
+
+        req.write(json);
+        req.end();
+    })
 }
 
-job1.start();
-job2.start();
-console.log('job1 status', job1.running); // job1 status undefined
-console.log('job2 status', job2.running); // job2 status undefined
+function deleteProject(projectId) {
+    console.log("------ delete project ------");
+    console.log("projectId " + projectId);
+    models.Project.destroy({
+        where: {measureProjectId: projectId}
+    });
+}
+
+registerTool.start();
+
+module.exports = registerTool;

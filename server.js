@@ -1,3 +1,4 @@
+/*
 const express = require('express');
 const Sequelize = require('sequelize');
 const app = express();
@@ -35,7 +36,7 @@ sequelize.authenticate()
 })
     .done();
 
-/*const connection = mysql.createConnection({
+/!*const connection = mysql.createConnection({
     host : 'localhost',
     user : 'root',
     password : 'root',
@@ -51,7 +52,7 @@ connection.connect(function (err) {
         console.log("Database is connected ...");
     }
 });
-*/
+*!/
 
 app.get('/', function (req, res) {
     res.render('index', { title: 'ASDF' });
@@ -121,7 +122,7 @@ app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 });
 
-/*
+/!*
 var options = {
     host: 'localhost',
     port: 8085,
@@ -146,4 +147,5 @@ req.on('error', function(e) {
 // write data to request body
 req.write('data\n');
 req.write('data\n');
-req.end();*/
+req.end();*!/
+*/

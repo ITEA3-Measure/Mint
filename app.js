@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var toolRegistrationRouter = require('./routes/registration');
 var configurationRouter = require('./routes/configuration');
 var historyRouter = require('./routes/history');
+var alertMonitor = require('./routes/alertMonitor');
+var subscriber = require('./examples/subscriber');
 
 var app = express();
 app.use(express.static('public'));
@@ -28,6 +30,7 @@ app.use('/users', usersRouter);
 app.use('/register', toolRegistrationRouter);
 app.use('/configure', configurationRouter);
 app.use('/history', historyRouter);
+/*alertMonitor.registerTool.start();*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
