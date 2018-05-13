@@ -10,7 +10,10 @@ var toolRegistrationRouter = require('./routes/registration');
 var configurationRouter = require('./routes/configuration');
 var historyRouter = require('./routes/history');
 var alertMonitor = require('./routes/alertMonitor');
+var machines = require('./routes/machinesCron');
 var subscriber = require('./examples/subscriber');
+
+machines.init();
 
 var app = express();
 app.use(express.static('public'));

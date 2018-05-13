@@ -29,7 +29,7 @@ module.exports = {
         file: 'requirements.js',
         category: 'Specification',
         role: 'Analyst',
-        threshold: 1,
+        threshold: 5,
         message: 'Refine requirements definitions or provide more details to avoid development rework'
         },
         {
@@ -53,7 +53,7 @@ module.exports = {
         file: 'vulnerabilities.js',
         category: 'Security',
         role: '',
-        threshold: 1,
+        threshold: 50,
         message: 'Check code for vulnerabilities like error handling or input validation'
         },
         {

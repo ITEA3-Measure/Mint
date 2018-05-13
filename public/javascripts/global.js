@@ -76,7 +76,7 @@ function addRowHandlers() {
                     var list = recommendations[id].recommendations;
                     $("#recommendationModalTable tbody").empty();
                     for (var i = 0; i < list.length; i++) {
-                        $('#recommendationModalTable tbody').append('<tr><td>'+list[i].createdAt+'</td><td>'+list[i].status+'</td><td>'+list[i].message+'</td></tr>');
+                        $('#recommendationModalTable tbody').append('<tr><td>'+list[i].createdAt+'</td><td>'+list[i].status+'</td><td>'+list[i].description+'</td></tr>');
                     }
                 }
             };

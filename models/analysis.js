@@ -15,7 +15,6 @@ module.exports = function (sequelize, DataTypes) {
         },
         name: DataTypes.STRING,
         description: DataTypes.STRING,
-        isSchedule: DataTypes.BOOLEAN,
         customThreshold: DataTypes.DOUBLE,
         customMessage: DataTypes.STRING,
         createdAt: {
