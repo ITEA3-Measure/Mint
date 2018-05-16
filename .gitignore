@@ -63,4 +63,6 @@ typings/
 .next
 
 /MINT.iml
-/examples/
+.idea/inspectionProfiles/
+config/config.json
+public/images/

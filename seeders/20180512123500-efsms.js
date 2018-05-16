@@ -15,8 +15,8 @@ module.exports = {
         'cc/mr > threshold',
         file: 'modularity.js',
         category: 'Code Quality',
-        role: 'Developer',
-        threshold: 1,
+        role: 'Developer/Designer',
+        threshold: 50,
         message: 'Reinforce the modular design of your development to allow more extensible, reusable, maintainable, and adaptable code.'
         },
         {
@@ -40,8 +40,8 @@ module.exports = {
         'rt(i) > rt(i-1) && b(i) == b(i-1)',
         file: 'performance.js',
         category: 'Performance',
-        role: '',
-        threshold: 1,
+        role: 'Operator',
+        threshold: 50,
         message: 'Check the last commit for problems in the code that generate a longer response time'
         },
         {
@@ -52,7 +52,7 @@ module.exports = {
         'sr > "C" && si > max => check vulnerabilies',
         file: 'vulnerabilities.js',
         category: 'Security',
-        role: '',
+        role: 'Security Expert',
         threshold: 50,
         message: 'Check code for vulnerabilities like error handling or input validation'
         },
@@ -64,9 +64,9 @@ module.exports = {
         'ibs(major, critical) > 0 && rr >= E => critical code review\n' +
         'ibs(minor) > 0 && rr < E => more unit test',
         file: 'codeQuality.js',
-        category: '',
-        role: 'Management',
-        threshold: 1,
+        category: 'Code Quality',
+        role: 'Developer/Tester',
+        threshold: 50,
         message: 'There is unsolved major issues in the code, make a code review and look for untested scenarios'
         }
     ], {});

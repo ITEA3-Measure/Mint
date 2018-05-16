@@ -55,7 +55,8 @@
     </div><!-- end Modal -->
 </div> <!-- /container -->
 <div class="container">
-    <table class="table">
+    <table class="table table-bordered">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -68,33 +69,30 @@
         </tr>
         </thead>
         <tbody>
-        <% for(var i=0; i<analysis.length; i++) {%>
-            <% if (analysis[i].status){ %>
-            <tr class="table-success">
-            <% } else{ %>
-            <tr class="table-dark">
-            <% } %>
-            <th scope="row"><%= analysis[i].id %></th>
-            <td><%= analysis[i].name %></td>
-            <td><%= analysis[i].description %></td>
-            <td><%= analysis[i].Efsm.category %></td>
-            <td><%= analysis[i].Efsm.role %></td>
+        <% for(var i in analyses) {%>
+        <tr class="table" data-id="<%= analyses[i].id %>">
+            <th scope="row"><%= analyses[i].id %></th>
+            <td><%= analyses[i].name %></td>
+            <td><%= analyses[i].description %></td>
+            <td><%= analyses[i].Efsm.category %></td>
+            <td><%= analyses[i].Efsm.role %></td>
             <td>
-                <% if (analysis[i].status){ %>
-                On
+                <% if (analyses[i].status){ %>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success turn-on">Active</button>
+                    <button type="button" class="btn btn-light turn-off">Inactive</button>
+                </div>
                     <% } else{ %>
-                Off
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-light turn-on">Active</button>
+                    <button type="button" class="btn btn-danger turn-off">Inactive</button>
+                </div>
                     <% } %>
             </td>
             <td>
-                <button type="button" class="btn btn-sm edit-machine" data-toggle="modal" data-target="#editModal" data-id="<%= analysis[i].id %>">
+                <button type="button" class="btn btn-sm edit-machine" data-toggle="modal" data-target="#editModal">
                     <i class="fas fa-pencil-alt" ></i>
                 </button>
-                <% if (analysis[i].status){ %>
-                <button type="button" class="btn btn-success btn-sm turn-off" data-id="<%= analysis[i].id %>"><i class="fa fa-toggle-off" aria-hidden="true"> Turn Off</i></button>
-                <% } else{ %>
-                <button type="button" class="btn btn-danger btn-sm turn-on" data-id="<%= analysis[i].id %>"><i class="fa fa-toggle-on" aria-hidden="true"> Turn On</i></button>
-                <% } %>
             </td>
         </tr>
         <% } %>
@@ -104,8 +102,11 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/javascripts/global.js"></script>
+<script src="/javascripts/utils-config.js"></script>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type='text/javascript'>
+    var analyses =<%-JSON.stringify(analyses)%>
+</script>
 </body>
 </html>

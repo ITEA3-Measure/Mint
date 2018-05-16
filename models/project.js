@@ -9,7 +9,11 @@ module.exports = function (sequelize, DataTypes) {
             unique: true
         },
         name: DataTypes.STRING,
-        measureProjectId: DataTypes.INTEGER,
+        measureProjectId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: true
+        } ,
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE,

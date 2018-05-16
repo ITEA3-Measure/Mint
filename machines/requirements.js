@@ -209,23 +209,3 @@ EFSM = {
     },
 };
 module.exports = EFSM;
-
-/*mmt.init(settings);
-
-var publisher = redis.createClient(settings.eventbus.port, settings.eventbus.host);
-publisher.config("SET","notify-keyspace-events", "KEA");*/
-
-/*
-var time = 1000;
-
-var ni = 100;
-var nri = 3;
-
-
-setInterval(function(){ console.log("- tick " + time/1000); time += 1000; publisher.publish('tick', JSON.stringify(MMT.tickJSON(time)))}, 1000);
-
-// Percentage of reopen issues is 3%, no recommendation
-setTimeout(function(){ ni = 100; publisher.publish('new_number_issues', JSON.stringify(MMT.attributeJSON(time, 'ni', ni, [], 'i1'))); console.log("time "+time+" ni "+ni);}, 8000);
-setTimeout(function(){ nri = 20; publisher.publish('new_number_reopen_issues', JSON.stringify(MMT.attributeJSON(time, 'nri', nri, [], 'i1'))); console.log("time "+time+" nri "+nri);}, 9000);
-*/
-

@@ -35,6 +35,7 @@ router.get('/:project', function(req, res, next) {
                 r.count += 1;
                 if(recommendations[i].createdAt.getTime() > r.last_updated.getTime()) {
                     r.last_updated = recommendations[i].createdAt;
+                    r.status = recommendations[i].status;
                 }
                 r.recommendations.push(recommendations[i]);
             }
@@ -50,11 +51,11 @@ router.get('/:project', function(req, res, next) {
                     role : recommendations[i].Analysis.Efsm.role,
                     message : recommendations[i].Analysis.customMessage,
                     count : 1,
+                    status : recommendations[i].status,
                     recommendations : recom_array
                 }
             }
         };
-        //console.log(JSON.stringify(result));
         res.render('history', {
             title: 'History',
             recommendations: recommendations,
@@ -67,36 +68,5 @@ router.get('/:project', function(req, res, next) {
 function sortByDate(myData) {
     return myData;
 };
-
-/*router.get('/:project', function(req, res, next) {
-    var projectId = req.params.project;
-    var limit = 10;
-    var offset = 0;
-    console.log("projectId : " + projectId);
-    models.Recommendation.findAndCountAll().then(function (data) {
-        var page = req.params.page; // page number
-        var pages = Math.ceil(data.count / limit);
-    });
-    models.Recommendation.findAll({
-        limit: limit,
-        offset: offset,
-        // $sort: { id: 1 },
-        order: [
-            ['createdAt', 'DESC']
-        ],
-        include: [
-            {model: models.Analysis,
-            require: false}
-        ]
-    }).then(function (recommendations) {
-        for(var i=0; i<recommendations.length; i++) {
-            //console.log(recommendations[i]);
-        }
-        res.render('history', {
-            title: 'History',
-            recommendations: recommendations
-        })
-    });
-});*/
 
 module.exports = router;

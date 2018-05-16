@@ -29,9 +29,14 @@ router.get('/:project', function (req, res, next) {
                 require: false}
         ]
     }).then(function (analysis) {
+        var result = {};
+        for(var i=0; i<analysis.length; i++) {
+            var id = analysis[i].id;
+            result[id] = analysis[i];
+        }
         res.render('config', {
             title: 'Configuration',
-            analysis: analysis
+            analyses: result
         })
     });
 });
@@ -67,16 +72,5 @@ router.get('/analysis/:analysisId', function (req, res, next) {
         res.json(analysis);
     });
 });
-
-/*router.get('/', function(req, res, next) {
-    models.Project.findAll({
-        include: [models.Project]
-    }).then(function (projects) {
-        res.render('config', {
-            title: 'Configuration',
-            projects: projects
-        })
-    });
-});*/
 
 module.exports = router;

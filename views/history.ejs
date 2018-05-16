@@ -34,7 +34,7 @@
             <tr class="" data-id="<%= result[i].id %>" data-toggle="modal" data-target="#recommendationModal">
                 <td><%= dateFormat(result[i].last_updated) %></td>
                 <td><%= result[i].machine_name %></td>
-                <td><%= result[i].count %></td>
+                <td><%= result[i].status %><span class="badge badge-secondary"><%= result[i].count %></span></td>
                 <td><%= result[i].category %></td>
                 <td><%= result[i].role %></td>
                 <td><%= result[i].message %></td>
@@ -73,7 +73,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/javascripts/global.js"></script>
+<script src="/javascripts/utils-history.js"></script>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script>

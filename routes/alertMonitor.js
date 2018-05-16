@@ -92,7 +92,7 @@ function configurate(projectId, projectAnalysisId) {
                 machines.forEach(function (machine) {
                     console.log("creating analysis for machine " + machine);
                     models.Analysis.create({
-                        status : false,
+                        status : true,
                         name: machine.name,
                         description: machine.get('description'),
                         customThreshold: machine.get('threshold'),

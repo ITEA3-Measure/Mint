@@ -10,7 +10,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         message: DataTypes.STRING,
         description: DataTypes.STRING,
-        status: DataTypes.STRING,
+        status: {
+            type: DataTypes.STRING,
+            defaultValue: "Open"
+        },
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE,
