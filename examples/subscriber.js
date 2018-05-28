@@ -2,13 +2,27 @@ var redis = require("redis");
 var util = require("util");
 var models  = require('../models');
 
-var settings = {
-    eventbus: {
-        type: 'redis',
-        host: '127.0.0.1',
-        port: 6379
-    }
-};
+if(process.env.REDIS_URL) {
+    console.log("process.env.REDIS_URL : " + process.env.REDIS_URL);
+    var redisUrl = (process.env.REDIS_URL).split(":");
+    var settings = {
+        eventbus: {
+            type: redisUrl[0],
+            host: redisUrl[2],
+            port: redisUrl[3]
+        }
+    };
+}
+else {
+    console.log("No REDIS_URL");
+    var settings = {
+        eventbus: {
+            type: 'redis',
+            host: '127.0.0.1',
+            port: 6379
+        }
+    };
+}
 
 var subscriber = redis.createClient(settings.eventbus.port, settings.eventbus.host);
 console.log("[" + new Date().toISOString() + "]" + " redis client created");
