@@ -128,8 +128,7 @@ EFSM = {
                                 // edit detail message
                                 var msg = active_state.contextvariables["recommendation_txt"].value;
                                 msg.description = "security_rating : " + active_state.contextvariables["security_rating"].value
-                                    + " security_incidents : " + active_state.contextvariables["security_incidents"].value
-                                    + " threshold : " + active_state.contextvariables["threshold"].value;
+                                    + " security_incidents : " + active_state.contextvariables["security_incidents"].value;
                                 publisher.publish('recommendations', JSON.stringify(msg));
                             }},
                             {fct: mmt.startTimer, opts: {timeout: 1000, name: 'to'}}]
@@ -153,8 +152,7 @@ EFSM = {
                                 // edit detail message
                                 var msg = active_state.contextvariables["recommendation_txt"].value;
                                 msg.description = "security_rating : " + active_state.contextvariables["security_rating"].value
-                                    + " security_incidents : " + active_state.contextvariables["security_incidents"].value
-                                    + " threshold : " + active_state.contextvariables["threshold"].value;
+                                    + " security_incidents : " + active_state.contextvariables["security_incidents"].value;
                                 publisher.publish('recommendations', JSON.stringify(msg));
                                 }},
                             {fct: mmt.startTimer, opts: {timeout: 1000, name: 'to'}}]

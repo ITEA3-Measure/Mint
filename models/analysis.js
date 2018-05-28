@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: false
         },
         name: DataTypes.STRING,
-        description: DataTypes.STRING,
+        description: DataTypes.TEXT,
         customThreshold: DataTypes.DOUBLE,
         customMessage: DataTypes.STRING,
         createdAt: {

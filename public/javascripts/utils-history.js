@@ -23,7 +23,8 @@ function addRowHandlers() {
                     $("#recommendationModalTable tbody").empty();
                     for (var i = 0; i < list.length; i++) {
                         $('#recommendationModalTable tbody').append(
-                            '<tr><td>'+list[i].createdAt+'</td><td>'
+                            '<tr><td>'+DateFormat.format.date(list[i].createdAt, "" +
+                            "dd/MM/yyyy HH:mm:ss")+'</td><td>'
                             +list[i].status+'</td><td>'
                             +list[i].description+'</td></tr>');
                     }
@@ -35,5 +36,7 @@ function addRowHandlers() {
 }
 
 function dataTable() {
-    $('#recommendationTable').DataTable();
+    $('#recommendationTable').DataTable( {
+        "order": [[ 0, 'asc' ]]
+    } );
 }

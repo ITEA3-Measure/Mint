@@ -1,20 +1,10 @@
-// mmt-modified
-var mmt = require('../../../mmt-correlator-DIEGO/mmt-modified/src/efsm');
-var redis = require("redis");
-var util = require("util");
-
-var settings = {
-    eventbus: {
-        type: 'redis',
-        host: '127.0.0.1',
-        port: 6379
-    }
-};
-
-mmt.init(settings);
-
-var publisher = redis.createClient(settings.eventbus.port, settings.eventbus.host);
-publisher.config("SET","notify-keyspace-events", "KEA");
+EFSM = {
+    create: function(options) {
+        console.log(options['analysisId']);
+        var mmt = options['mmt'];
+        var publisher = options['publisher'];
+        var threshold = options['threshold'];
+        var analysisId = options['analysisId'];
 
 var efsm = new mmt.EFSM(
     {
@@ -70,11 +60,14 @@ var efsm = new mmt.EFSM(
             },
             {
                 varname: 'threshold',
-                startval: 50
+                startval: threshold
             },
             {
                 varname: 'recommendation_txt',
-                startval: "check the last commit for problems in the code that generate a longer response time"
+                startval: {
+                    analysisId: analysisId,
+                    description : ""
+                }
             }
         ],
         transitions: [
@@ -210,7 +203,12 @@ var efsm = new mmt.EFSM(
                         console.log("response_time_new : " + active_state.contextvariables["response_time_new"].value);
                         console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                         console.log("bandwith_new : " + active_state.contextvariables["bandwith_new"].value);
-                        publisher.publish('recommendations', active_state.contextvariables["recommendation_txt"].value);
+                        var msg = active_state.contextvariables["recommendation_txt"].value;
+                        msg.description = "old response_time : " + active_state.contextvariables["response_time_old"].value
+                            + " new response_time : " + active_state.contextvariables["response_time_new"].value
+                            + " old bandwith : " + active_state.contextvariables["bandwith_old"].value
+                            + " new bandwith : " + active_state.contextvariables["bandwith_new"].value;
+                        publisher.publish('recommendations', JSON.stringify(msg));
                     }},
                     {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
             },
@@ -229,7 +227,12 @@ var efsm = new mmt.EFSM(
                         console.log("response_time_new : " + active_state.contextvariables["response_time_new"].value);
                         console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                         console.log("bandwith_new : " + active_state.contextvariables["bandwith_new"].value);
-                        publisher.publish('recommendations', active_state.contextvariables["recommendation_txt"].value);
+                        var msg = active_state.contextvariables["recommendation_txt"].value;
+                        msg.description = "old response_time : " + active_state.contextvariables["response_time_old"].value
+                            + " new response_time : " + active_state.contextvariables["response_time_new"].value
+                            + " old bandwith : " + active_state.contextvariables["bandwith_old"].value
+                            + " new bandwith : " + active_state.contextvariables["bandwith_new"].value;
+                        publisher.publish('recommendations', JSON.stringify(msg));
                     }},
                     {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
             },
@@ -237,3 +240,6 @@ var efsm = new mmt.EFSM(
         ]
     }
 );
+    },
+};
+module.exports = EFSM;

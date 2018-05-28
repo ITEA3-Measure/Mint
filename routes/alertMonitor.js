@@ -147,9 +147,14 @@ function configurate(projectId, projectAnalysisId) {
 function deleteProject(projectId) {
     console.log("------ delete project ------");
     console.log("projectId " + projectId);
+
     models.Project.destroy({
         where: {measureProjectId: projectId}
-    });
+    }).then(models.Recommendation.destroy({
+        where: {analysisId: null}
+    }));
+
+
 }
 
 registerTool.start();

@@ -128,16 +128,14 @@ EFSM = {
                                     var msg = active_state.contextvariables["recommendation_txt"].value;
                                     msg.description = "Critical code review : \n"
                                         + "issues_by_severity : " + active_state.contextvariables["issues_by_severity"].value
-                                        + " reliability_rating : " + active_state.contextvariables["reliability_rating"].value
-                                        + " threshold : " + active_state.contextvariables["threshold"].value;
+                                        + " reliability_rating : " + active_state.contextvariables["reliability_rating"].value;
                                     return true;
                                 }
                                 if ((issues_by_severity == "minor") && (reliability_rating < "E")) {
                                     var msg = active_state.contextvariables["recommendation_txt"].value;
                                     msg.description = "More unit tests : \n"
                                         + "issues_by_severity : " + active_state.contextvariables["issues_by_severity"].value
-                                        + " reliability_rating : " + active_state.contextvariables["reliability_rating"].value
-                                        + " threshold : " + active_state.contextvariables["threshold"].value;
+                                        + " reliability_rating : " + active_state.contextvariables["reliability_rating"].value;
                                     return true;
                                 }
                                 return false;
@@ -164,16 +162,14 @@ EFSM = {
                                     var msg = active_state.contextvariables["recommendation_txt"].value;
                                     msg.description = "Critical code review : \n"
                                         + "issues_by_severity : " + active_state.contextvariables["issues_by_severity"].value
-                                        + " reliability_rating : " + active_state.contextvariables["reliability_rating"].value
-                                        + " threshold : " + active_state.contextvariables["threshold"].value;
+                                        + " reliability_rating : " + active_state.contextvariables["reliability_rating"].value;
                                     return true;
                                 }
                                 if ((issues_by_severity == "minor") && (reliability_rating < "E")) {
                                     var msg = active_state.contextvariables["recommendation_txt"].value;
                                     msg.description = "More unit tests : \n"
                                         + "issues_by_severity : " + active_state.contextvariables["issues_by_severity"].value
-                                        + " reliability_rating : " + active_state.contextvariables["reliability_rating"].value
-                                        + " threshold : " + active_state.contextvariables["threshold"].value;
+                                        + " reliability_rating : " + active_state.contextvariables["reliability_rating"].value;
                                     return true;
                                 }
                                 return false;

@@ -59,7 +59,6 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Machine Name</th>
             <th scope="col">Description</th>
             <th scope="col">Category</th>
@@ -71,7 +70,6 @@
         <tbody>
         <% for(var i in analyses) {%>
         <tr class="table" data-id="<%= analyses[i].id %>">
-            <th scope="row"><%= analyses[i].id %></th>
             <td><%= analyses[i].name %></td>
             <td><%= analyses[i].description %></td>
             <td><%= analyses[i].Efsm.category %></td>

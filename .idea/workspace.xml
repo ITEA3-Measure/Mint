@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f8063b4-5e6e-40af-9658-1de909c8fc50" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/utils-config.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/utils-history.js" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="3f8063b4-5e6e-40af-9658-1de909c8fc50" name="Default" comment="K">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change beforePath="$PROJECT_DIR$/bin/www" afterPath="$PROJECT_DIR$/bin/www" />
+      <change beforePath="$PROJECT_DIR$/config/config.ini" afterPath="$PROJECT_DIR$/config/config.ini" />
       <change beforePath="$PROJECT_DIR$/machines/codeQuality.js" afterPath="$PROJECT_DIR$/machines/codeQuality.js" />
-      <change beforePath="$PROJECT_DIR$/machines/modularity.js" afterPath="$PROJECT_DIR$/machines/modularity.js" />
-      <change beforePath="$PROJECT_DIR$/machines/requirements.js" afterPath="$PROJECT_DIR$/machines/requirements.js" />
-      <change beforePath="$PROJECT_DIR$/models/project.js" afterPath="$PROJECT_DIR$/models/project.js" />
+      <change beforePath="$PROJECT_DIR$/machines/performance.js" afterPath="$PROJECT_DIR$/machines/performance.js" />
+      <change beforePath="$PROJECT_DIR$/machines/vulnerabilities.js" afterPath="$PROJECT_DIR$/machines/vulnerabilities.js" />
+      <change beforePath="$PROJECT_DIR$/models/analysis.js" afterPath="$PROJECT_DIR$/models/analysis.js" />
+      <change beforePath="$PROJECT_DIR$/models/efsm.js" afterPath="$PROJECT_DIR$/models/efsm.js" />
       <change beforePath="$PROJECT_DIR$/models/recommendation.js" afterPath="$PROJECT_DIR$/models/recommendation.js" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/global.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/utils-history.js" afterPath="$PROJECT_DIR$/public/javascripts/utils-history.js" />
       <change beforePath="$PROJECT_DIR$/routes/alertMonitor.js" afterPath="$PROJECT_DIR$/routes/alertMonitor.js" />
-      <change beforePath="$PROJECT_DIR$/routes/configuration.js" afterPath="$PROJECT_DIR$/routes/configuration.js" />
-      <change beforePath="$PROJECT_DIR$/routes/history.js" afterPath="$PROJECT_DIR$/routes/history.js" />
       <change beforePath="$PROJECT_DIR$/routes/machinesCron.js" afterPath="$PROJECT_DIR$/routes/machinesCron.js" />
-      <change beforePath="$PROJECT_DIR$/routes/registration.js" afterPath="$PROJECT_DIR$/routes/registration.js" />
       <change beforePath="$PROJECT_DIR$/seeders/20180512123500-efsms.js" afterPath="$PROJECT_DIR$/seeders/20180512123500-efsms.js" />
+      <change beforePath="$PROJECT_DIR$/utils/mmt-correlator/example/rabbit.js" afterPath="$PROJECT_DIR$/utils/mmt-correlator/example/rabbit.js" />
       <change beforePath="$PROJECT_DIR$/views/config.ejs" afterPath="$PROJECT_DIR$/views/config.ejs" />
       <change beforePath="$PROJECT_DIR$/views/history.ejs" afterPath="$PROJECT_DIR$/views/history.ejs" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -56,14 +52,44 @@
     <favorites_list name="MINT" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.39583334">
+    <splitter split-orientation="horizontal" split-proportion="0.51490355">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="modularity.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/machines/modularity.js">
+          <file leaf-file-name="20180512123500-efsms.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/seeders/20180512123500-efsms.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
-                  <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+                  <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="performance.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/machines/performance.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="50">
+                  <caret line="2" column="43" lean-forward="false" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="machinesCron.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/machinesCron.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2000">
+                  <caret line="80" column="2" lean-forward="false" selection-start-line="80" selection-start-column="2" selection-end-line="80" selection-end-column="2" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="recommendation.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/recommendation.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="275">
+                  <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -79,61 +105,43 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="project.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/project.js">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="50">
-                  <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+                <state relative-caret-position="150">
+                  <caret line="6" column="57" lean-forward="false" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="recommendation.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/recommendation.js">
+          <file leaf-file-name="codeQuality.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/machines/codeQuality.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="14" />
+                <state relative-caret-position="2200">
+                  <caret line="88" column="63" lean-forward="false" selection-start-line="88" selection-start-column="45" selection-end-line="88" selection-end-column="63" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="history.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/history.js">
+          <file leaf-file-name="alertMonitor.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/alertMonitor.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="175">
-                  <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-                  <folding />
+                <state relative-caret-position="3850">
+                  <caret line="154" column="6" lean-forward="false" selection-start-line="154" selection-start-column="6" selection-end-line="154" selection-end-column="6" />
+                  <folding>
+                    <marker date="1526593133559" expanded="true" signature="4074:4077" ph="{&quot;projectAnalysisId&quot;: projectAnalysisId...}" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="configuration.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/configuration.js">
+          <file leaf-file-name="metrics_publisher.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/examples/metrics_publisher.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="825">
-                  <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="utils-config.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/javascripts/utils-config.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="125">
-                  <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="utils-history.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/javascripts/utils-history.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="100">
-                  <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+                <state relative-caret-position="532">
+                  <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
                   <folding />
                 </state>
               </provider>
@@ -143,31 +151,51 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+          <file leaf-file-name="modularity.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/machines/modularity.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="542">
+                  <caret line="105" column="14" lean-forward="false" selection-start-line="105" selection-start-column="14" selection-end-line="105" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config/config.ini">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="300">
+                  <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="history.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/history.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="46" column="28" lean-forward="false" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+                <state relative-caret-position="100">
+                  <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="history.ejs" pinned="false" current-in-tab="false">
+          <file leaf-file-name="utils-history.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/javascripts/utils-history.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="700">
+                  <caret line="28" column="63" lean-forward="false" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="history.ejs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/history.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="297">
-                  <caret line="75" column="39" lean-forward="false" selection-start-line="75" selection-start-column="39" selection-end-line="75" selection-end-column="39" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="config.ejs" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/views/config.ejs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="99" column="12" lean-forward="true" selection-start-line="99" selection-start-column="12" selection-end-line="99" selection-end-column="12" />
+                <state relative-caret-position="357">
+                  <caret line="76" column="40" lean-forward="false" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
                   <folding />
                 </state>
               </provider>
@@ -187,19 +215,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>timeago</find>
-      <find>firstName</find>
-      <find>editModal</find>
-      <find>recommendationModal</find>
-      <find>recommendation-</find>
-      <find>recommendation</find>
-      <find>id</find>
-      <find>publisher</find>
-      <find>for</find>
-      <find>configurate</find>
-      <find>app</find>
-      <find>console</find>
-      <find>prop[property]</find>
       <find>_settings</find>
       <find>EFSM</find>
       <find>efsm</find>
@@ -217,6 +232,19 @@
       <find>analysis</find>
       <find>recomme</find>
       <find>glob</find>
+      <find>new_response_time</find>
+      <find>publisher.publish</find>
+      <find>thre</find>
+      <find>th</find>
+      <find>seq</find>
+      <find>machines</find>
+      <find>thres</find>
+      <find>description</find>
+      <find>threshold</find>
+      <find>recomm</find>
+      <find>reliability_rating</find>
+      <find>R =</find>
+      <find>timeout</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -250,7 +278,6 @@
         <option value="$PROJECT_DIR$/config/dev.ini" />
         <option value="$PROJECT_DIR$/models/machine.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/config/config.ini" />
         <option value="$PROJECT_DIR$/machines/example.js" />
         <option value="$PROJECT_DIR$/examples/cronMetrics.js" />
         <option value="$PROJECT_DIR$/models/Recommendation.js" />
@@ -258,32 +285,35 @@
         <option value="$PROJECT_DIR$/AnalysisService.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/config/config.json" />
-        <option value="$PROJECT_DIR$/models/efsm.js" />
         <option value="$PROJECT_DIR$/models/index.js" />
         <option value="$PROJECT_DIR$/examples/metrics_publisher.js" />
         <option value="$PROJECT_DIR$/examples/subscriber.js" />
-        <option value="$PROJECT_DIR$/machines/vulnerabilities.js" />
         <option value="$PROJECT_DIR$/machines/modularity.js" />
-        <option value="$PROJECT_DIR$/routes/machinesCron.js" />
-        <option value="$PROJECT_DIR$/machines/codeQuality.js" />
         <option value="$PROJECT_DIR$/machines/requirements.js" />
         <option value="$PROJECT_DIR$/routes/registration.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/models/analysis.js" />
-        <option value="$PROJECT_DIR$/models/recommendation.js" />
         <option value="$PROJECT_DIR$/models/project.js" />
         <option value="$PROJECT_DIR$/bin/www" />
-        <option value="$PROJECT_DIR$/routes/alertMonitor.js" />
         <option value="$PROJECT_DIR$/public/javascripts/global.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/routes/history.js" />
         <option value="$PROJECT_DIR$/routes/configuration.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/utils-history.js" />
         <option value="$PROJECT_DIR$/public/javascripts/utils-config.js" />
-        <option value="$PROJECT_DIR$/seeders/20180512123500-efsms.js" />
-        <option value="$PROJECT_DIR$/views/history.ejs" />
-        <option value="$PROJECT_DIR$/views/config.ejs" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/machines/performance.js" />
+        <option value="$PROJECT_DIR$/views/config.ejs" />
+        <option value="$PROJECT_DIR$/views/history.ejs" />
+        <option value="$PROJECT_DIR$/public/javascripts/utils-history.js" />
+        <option value="$PROJECT_DIR$/machines/vulnerabilities.js" />
+        <option value="$PROJECT_DIR$/machines/codeQuality.js" />
+        <option value="$PROJECT_DIR$/models/efsm.js" />
+        <option value="$PROJECT_DIR$/models/analysis.js" />
+        <option value="$PROJECT_DIR$/models/recommendation.js" />
+        <option value="$PROJECT_DIR$/routes/alertMonitor.js" />
+        <option value="$PROJECT_DIR$/seeders/20180512123500-efsms.js" />
+        <option value="$PROJECT_DIR$/routes/machinesCron.js" />
+        <option value="$PROJECT_DIR$/utils/mmt-correlator/example/rabbit.js" />
+        <option value="$PROJECT_DIR$/config/config.ini" />
       </list>
     </option>
   </component>
@@ -306,10 +336,10 @@
     <handled-path value="$PROJECT_DIR$/utils/mmt-correlator/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1942" />
-    <option name="height" value="1042" />
+    <option name="x" value="2904" />
+    <option name="y" value="-874" />
+    <option name="width" value="1938" />
+    <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -327,10 +357,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -341,7 +368,22 @@
             <path>
               <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
               <item name="MINT" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MINT" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MINT" type="462c0819:PsiDirectoryNode" />
+              <item name="machines" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MINT" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
@@ -364,10 +406,36 @@
               <item name="MINT" type="462c0819:PsiDirectoryNode" />
               <item name="seeders" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MINT" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MINT" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="mmt-correlator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MINT" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="mmt-correlator" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MINT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MINT" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -446,8 +514,8 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="alertMonitor.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="alertMonitor.js" working-dir="$PROJECT_DIR$/routes" />
     <configuration name="metrics_publisher.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="metrics_publisher.js" working-dir="$PROJECT_DIR$/examples" />
+    <configuration name="rabbit.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="rabbit.js" working-dir="$PROJECT_DIR$/utils/mmt-correlator/example" />
     <configuration name="requirements.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="requirements.js" working-dir="$PROJECT_DIR$/machines" />
     <configuration name="subscriber.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="subscriber.js" working-dir="$PROJECT_DIR$/examples" />
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -502,18 +570,18 @@
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Node.js.bin\www" />
       <item index="1" class="java.lang.String" itemvalue="npm.start" />
-      <item index="2" class="java.lang.String" itemvalue="Node.js.alertMonitor.js" />
-      <item index="3" class="java.lang.String" itemvalue="Node.js.requirements.js" />
-      <item index="4" class="java.lang.String" itemvalue="Node.js.subscriber.js" />
-      <item index="5" class="java.lang.String" itemvalue="Node.js.metrics_publisher.js" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.requirements.js" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.subscriber.js" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.metrics_publisher.js" />
+      <item index="5" class="java.lang.String" itemvalue="Node.js.rabbit.js" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="npm.start" />
         <item index="1" class="java.lang.String" itemvalue="Node.js.metrics_publisher.js" />
-        <item index="2" class="java.lang.String" itemvalue="Node.js.requirements.js" />
-        <item index="3" class="java.lang.String" itemvalue="Node.js.subscriber.js" />
-        <item index="4" class="java.lang.String" itemvalue="Node.js.alertMonitor.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.rabbit.js" />
+        <item index="3" class="java.lang.String" itemvalue="Node.js.requirements.js" />
+        <item index="4" class="java.lang.String" itemvalue="Node.js.subscriber.js" />
       </list>
     </recent_temporary>
   </component>
@@ -552,7 +620,11 @@
       <workItem from="1526028353894" duration="2251000" />
       <workItem from="1526128608593" duration="52635000" />
       <workItem from="1526418897248" duration="1479000" />
-      <workItem from="1526475636918" duration="2991000" />
+      <workItem from="1526475636918" duration="8314000" />
+      <workItem from="1526582009637" duration="12445000" />
+      <workItem from="1526984269878" duration="1982000" />
+      <workItem from="1527070696836" duration="3305000" />
+      <workItem from="1527128067790" duration="3983000" />
     </task>
     <task id="LOCAL-00001" summary="added machines, mmt-correlator,edit views, seeders (to create efsms in db)">
       <created>1526167993738</created>
@@ -568,11 +640,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526174104332</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added machines, change js, added metric publisher example">
+      <created>1526480218041</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1526480218041</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234811000" />
+    <option name="totallyTimeSpent" value="261849000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -584,7 +663,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="2869" y="-850" width="2182" height="1312" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -594,12 +673,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48794064" sideWeight="0.5028708" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32966506" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49628714" sideWeight="0.49712917" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19567567" sideWeight="0.54885995" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34282178" sideWeight="0.49783784" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18133971" sideWeight="0.5692884" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4950495" sideWeight="0.49712917" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25695732" sideWeight="0.49783784" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19567567" sideWeight="0.45114008" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18133971" sideWeight="0.4307116" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21354167" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2492823" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -655,7 +734,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added machines, mmt-correlator,edit views, seeders (to create efsms in db)" />
     <MESSAGE value="machines edited to get parameters (analysis id, threshold)" />
-    <option name="LAST_COMMIT_MESSAGE" value="machines edited to get parameters (analysis id, threshold)" />
+    <MESSAGE value="added machines, change js, added metric publisher example" />
+    <option name="LAST_COMMIT_MESSAGE" value="added machines, change js, added metric publisher example" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -664,30 +744,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yarn.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/dataSources.local.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/machines/example.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -726,21 +782,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/mmt-correlator/example/rabbit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/seeders/20180512140702-efsms.js" />
-    <entry file="file://$PROJECT_DIR$/config/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="67">
@@ -755,13 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="57" lean-forward="true" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -769,31 +804,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/efsm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/metrics_publisher.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1274">
-          <caret line="2" column="54" lean-forward="false" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/mmt-correlator/src/efsm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="481">
           <caret line="705" column="21" lean-forward="true" selection-start-line="705" selection-start-column="21" selection-end-line="705" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machines/performance.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-525">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -818,27 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machines/codeQuality.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4625">
-          <caret line="185" column="100" lean-forward="false" selection-start-line="185" selection-start-column="100" selection-end-line="185" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machines/vulnerabilities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="130" column="32" lean-forward="true" selection-start-line="130" selection-start-column="32" selection-end-line="130" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/registration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="103" column="29" lean-forward="false" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MINT.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -850,13 +843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/analysis.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="1" column="50" lean-forward="true" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -881,17 +867,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/machinesCron.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1625">
-          <caret line="65" column="45" lean-forward="true" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
+        <state relative-caret-position="375">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/alertMonitor.js">
+    <entry file="file://$PROJECT_DIR$/routes/configuration.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="94" column="37" lean-forward="false" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+        <state relative-caret-position="825">
+          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/registration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/global.js" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="67" column="14" lean-forward="true" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/utils-config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/registration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="26" column="42" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/config.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="60" column="12" lean-forward="false" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/history.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/project.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machines/vulnerabilities.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/efsm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/analysis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -903,113 +969,123 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machines/modularity.js">
+    <entry file="file://$PROJECT_DIR$/models/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/project.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+        <state relative-caret-position="150">
+          <caret line="6" column="57" lean-forward="false" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/recommendation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="14" />
+        <state relative-caret-position="275">
+          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/configuration.js">
+    <entry file="file://$PROJECT_DIR$/routes/alertMonitor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-          <folding />
+        <state relative-caret-position="3850">
+          <caret line="154" column="6" lean-forward="false" selection-start-line="154" selection-start-column="6" selection-end-line="154" selection-end-column="6" />
+          <folding>
+            <marker date="1526593133559" expanded="true" signature="4074:4077" ph="{&quot;projectAnalysisId&quot;: projectAnalysisId...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/registration.js">
+    <entry file="file://$PROJECT_DIR$/machines/codeQuality.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/history.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="614">
-          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+        <state relative-caret-position="2200">
+          <caret line="88" column="63" lean-forward="false" selection-start-line="88" selection-start-column="45" selection-end-line="88" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/seeders/20180512123500-efsms.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+        <state relative-caret-position="0">
+          <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/utils-history.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        <state relative-caret-position="700">
+          <caret line="28" column="63" lean-forward="false" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machines/modularity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="105" column="14" lean-forward="false" selection-start-line="105" selection-start-column="14" selection-end-line="105" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machines/performance.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="43" lean-forward="false" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/mmt-correlator/example/rabbit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="76" column="56" lean-forward="true" selection-start-line="76" selection-start-column="56" selection-end-line="76" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/machinesCron.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2000">
+          <caret line="80" column="2" lean-forward="false" selection-start-line="80" selection-start-column="2" selection-end-line="80" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/history.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="75" column="39" lean-forward="false" selection-start-line="75" selection-start-column="39" selection-end-line="75" selection-end-column="39" />
+        <state relative-caret-position="357">
+          <caret line="76" column="40" lean-forward="false" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/yarn.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="67" column="14" lean-forward="true" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/config.ejs">
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="99" column="12" lean-forward="true" selection-start-line="99" selection-start-column="12" selection-end-line="99" selection-end-column="12" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/utils-config.js">
+    <entry file="file://$PROJECT_DIR$/examples/metrics_publisher.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+        <state relative-caret-position="532">
+          <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
           <folding />
         </state>
       </provider>

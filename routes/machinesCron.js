@@ -6,6 +6,7 @@ var requirementsEfsm = require('../machines/requirements');
 var vulnerabilitiesEfsm = require('../machines/vulnerabilities');
 var modularityEfsm = require('../machines/modularity');
 var codeQualityEfsm = require('../machines/codeQuality');
+var performanceEfsm = require('../machines/performance');
 
 var settings = {
     eventbus: {
@@ -60,6 +61,14 @@ Machines = {
                 }
                 else if((analysis.Efsm.file).includes("codeQuality")) {
                     codeQualityEfsm.create({
+                        analysisId :analysis.id,
+                        threshold : analysis.Efsm.threshold,
+                        mmt : mmt,
+                        publisher : publisher
+                    });
+                }
+                else if((analysis.Efsm.file).includes("performance")) {
+                    performanceEfsm.create({
                         analysisId :analysis.id,
                         threshold : analysis.Efsm.threshold,
                         mmt : mmt,

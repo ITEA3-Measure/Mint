@@ -8,8 +8,8 @@ module.exports = function (sequelize, DataTypes) {
             autoIncrement: true,
             unique: true
         },
-        message: DataTypes.STRING,
-        description: DataTypes.STRING,
+        message: DataTypes.TEXT,
+        description: DataTypes.TEXT,
         status: {
             type: DataTypes.STRING,
             defaultValue: "Open"

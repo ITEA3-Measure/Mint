@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
             unique: true
         },
         name: DataTypes.STRING,
-        description: DataTypes.STRING,
+        description: DataTypes.TEXT,
         file: DataTypes.STRING,
         category: DataTypes.STRING,
         role: DataTypes.STRING,
