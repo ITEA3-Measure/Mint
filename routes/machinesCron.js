@@ -8,13 +8,27 @@ var modularityEfsm = require('../machines/modularity');
 var codeQualityEfsm = require('../machines/codeQuality');
 var performanceEfsm = require('../machines/performance');
 
-var settings = {
-    eventbus: {
-        type: 'redis',
-        host: '127.0.0.1',
-        port: 6379
-    }
-};
+if(process.env.REDIS_URL) {
+    console.log("process.env.REDIS_URL : " + process.env.REDIS_URL);
+    var redisUrl = (process.env.REDIS_URL).split(":");
+    var settings = {
+        eventbus: {
+            type: redisUrl[0],
+            host: redisUrl[2],
+            port: redisUrl[3]
+        }
+    };
+}
+else {
+    console.log("No REDIS_URL");
+    var settings = {
+        eventbus: {
+            type: 'redis',
+            host: '127.0.0.1',
+            port: 6379
+        }
+    };
+}
 
 mmt.init(settings);
 var publisher = redis.createClient(settings.eventbus.port, settings.eventbus.host);

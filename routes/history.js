@@ -10,7 +10,7 @@ router.get('/:project', function(req, res, next) {
         include: [
             {
                 model: models.Analysis,
-                require: false,
+                require: true,
                 include: [
                     {
                         model: models.Efsm,
@@ -66,7 +66,18 @@ router.get('/:project', function(req, res, next) {
 });
 
 function sortByDate(myData) {
+    for(var i in myData) {
+        myData[i].recommendations.sort(compare);
+    }
     return myData;
 };
+
+function compare(a,b) {
+    if (a.createdAt.getTime() < b.createdAt.getTime())
+        return 1;
+    if (a.createdAt.getTime() > b.createdAt.getTime())
+        return -1;
+    return 0;
+}
 
 module.exports = router;

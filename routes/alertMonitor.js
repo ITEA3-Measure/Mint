@@ -9,7 +9,6 @@ var models  = require('../models');
 var registerTool = new CronJob({
     cronTime: '*/1 * * * * *',
     onTick: function() {
-        //console.log('job 2 ticked');
 
         var headers = {
             'Content-Type': 'application/json'
@@ -99,6 +98,20 @@ function configurate(projectId, projectAnalysisId) {
                         customMessage: machine.get('message'),
                         ProjectId: project.get('id'),
                         EfsmId: machine.get('id')
+                    }).then(function (analysis) {
+                        console.log("Analysis created with id : " + analysis.get('id'));
+                        console.log("for machine id : " + machine.get('id'));
+                        models.Measure.findAll({
+                            where: {EfsmId: machine.get('id')}
+                        }).then(function (measures) {
+                            measures.forEach(function (measure) {
+                                    models.Instance.create({
+                                        name: "",
+                                        AnalysisId: analysis.get('id'),
+                                        MeasureId: measure.get('id')
+                                    })
+                            })
+                        })
                     })
                 })
             })

@@ -3,13 +3,27 @@ var util = require("util");
 var mmt = require('../utils/mmt-correlator/src/efsm');
 const readline = require('readline');
 
-var settings = {
-    eventbus: {
-        type: 'redis',
-        host: '127.0.0.1',
-        port: 6379
-    }
-};
+if(process.env.REDIS_URL) {
+    console.log("process.env.REDIS_URL : " + process.env.REDIS_URL);
+    var redisUrl = (process.env.REDIS_URL).split(":");
+    var settings = {
+        eventbus: {
+            type: redisUrl[0],
+            host: redisUrl[2],
+            port: redisUrl[3]
+        }
+    };
+}
+else {
+    console.log("No REDIS_URL");
+    var settings = {
+        eventbus: {
+            type: 'redis',
+            host: '127.0.0.1',
+            port: 6379
+        }
+    };
+}
 
 mmt.init(settings);
 

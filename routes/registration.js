@@ -48,6 +48,10 @@ Registration = {
             console.log('problem with request: ' + e.message);
         });
 
+        process.on('uncaughtException', function (err) {
+            console.log(err);
+        });
+
         req.write(json);
 
         req.end();

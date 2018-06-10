@@ -31,10 +31,11 @@
         </thead>
         <tbody>
         <% for(var i in result) {%>
-            <tr class="" data-id="<%= result[i].id %>" data-toggle="modal" data-target="#recommendationModal">
+            <tr class=<% if(result[i].status == "New"){ %> <%= "table-warning" %> <% } else { %> <%= "table" %> <% } %>
+                data-id="<%= result[i].id %>" data-toggle="modal" data-target="#recommendationModal">
                 <td><%= dateFormat(result[i].last_updated) %></td>
                 <td><%= result[i].machine_name %></td>
-                <td><%= result[i].status %><span class="badge badge-secondary"><%= result[i].count %></span></td>
+                <td><%= result[i].status %><span class="badge badge-secondary"> <%= result[i].count %></span></td>
                 <td><%= result[i].category %></td>
                 <td><%= result[i].role %></td>
                 <td><%= result[i].message %></td>

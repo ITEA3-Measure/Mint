@@ -43,6 +43,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         });
         models.Analysis.hasMany(models.Recommendation);
+        models.Analysis.hasMany(models.Instance);
     };
 
     return Analysis;
