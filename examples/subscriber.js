@@ -33,7 +33,7 @@ subscriber.on('pmessage', function(pattern,channel, msg) {
     models.Recommendation.create({
         message: "",
         description: msgJson['description'],
-        status: "Active",
+        status: "New",
         AnalysisId: msgJson['analysisId']
     })
 });

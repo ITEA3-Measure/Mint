@@ -13,7 +13,7 @@ EFSM = {
                 logdata: true,
                 onCreation: function () {},
                 onDeletion: function () {},
-                events: ['new_maintainability_rating', 'new_class_complexity', 'timeout.to'],
+                events: ['new_MaintainabilityRatingBySonarCube', 'new_ClassComplexityBySonarCube', 'timeout.to'],
                 states: [
                     {
                         id: 'init'
@@ -61,7 +61,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'maintainability_rating_received',
-                        event: 'new_maintainability_rating',
+                        event: 'new_MaintainabilityRatingBySonarCube',
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -75,7 +75,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'class_complexity_received',
-                        event: 'new_class_complexity',
+                        event: 'new_ClassComplexityBySonarCube',
                         // conditions: [{fct: function() {return true}}],
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
@@ -89,7 +89,7 @@ EFSM = {
                     {
                         from: 'maintainability_rating_received',
                         to: 'recommendation',
-                        event: 'new_class_complexity',
+                        event: 'new_ClassComplexityBySonarCube',
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["class_complexity"].value = msg.data.value;
                                 console.log("maintainability_rating : " + active_state.contextvariables["maintainability_rating"].value);
@@ -115,7 +115,7 @@ EFSM = {
                     {
                         from: 'class_complexity_received',
                         to: 'recommendation',
-                        event: 'new_maintainability_rating',
+                        event: 'new_MaintainabilityRatingBySonarCube',
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["maintainability_rating"].value = msg.data.value;
                                 console.log("maintainability_rating : " + active_state.contextvariables["maintainability_rating"].value);
@@ -142,7 +142,7 @@ EFSM = {
                     {
                         from: 'class_complexity_received',
                         to: 'class_complexity_received',
-                        event: 'new_class_complexity',
+                        event: 'new_ClassComplexityBySonarCube',
                         conditions: [],
                         actions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["class_complexity"].value = msg.data.value;
@@ -152,7 +152,7 @@ EFSM = {
                     {
                         from: 'maintainability_rating_received',
                         to: 'maintainability_rating_received',
-                        event: 'new_maintainability_rating',
+                        event: 'new_MaintainabilityRatingBySonarCube',
                         conditions: [],
                         actions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["maintainability_rating"].value = msg.data.value;

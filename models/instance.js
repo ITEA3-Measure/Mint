@@ -1,6 +1,6 @@
 "use strict";
 module.exports = function (sequelize, DataTypes) {
-    var Efsm = sequelize.define('Efsm', {
+    var Instance = sequelize.define('Instance', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -9,12 +9,6 @@ module.exports = function (sequelize, DataTypes) {
             unique: true
         },
         name: DataTypes.STRING,
-        description: DataTypes.TEXT,
-        file: DataTypes.STRING,
-        category: DataTypes.STRING,
-        role: DataTypes.STRING,
-        threshold: DataTypes.DOUBLE,
-        message: DataTypes.STRING,
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE,
@@ -27,10 +21,20 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    Efsm.associate = function (models) {
-        models.Efsm.hasMany(models.Analysis);
-        models.Efsm.hasMany(models.Measure);
+    Instance.associate = function (models) {
+        models.Instance.belongsTo(models.Analysis, {
+            onDelete: "CASCADE",
+            foreignKey: {
+                allowNull: false
+            }
+        });
+        models.Instance.belongsTo(models.Measure, {
+            onDelete: "CASCADE",
+            foreignKey: {
+                allowNull: false
+            }
+        });
     }
 
-    return Efsm;
+    return Instance;
 };

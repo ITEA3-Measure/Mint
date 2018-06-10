@@ -12,9 +12,11 @@ var historyRouter = require('./routes/history');
 var alertMonitor = require('./routes/alertMonitor');
 var machines = require('./routes/machinesCron');
 var subscriber = require('./examples/subscriber');
+var measurements = require('./examples/cronGetMeasurements');
 
 machines.init();
 toolRegistrationRouter.init();
+measurements.init();
 
 var app = express();
 app.use(express.static('public'));
@@ -31,7 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-/*app.use('/register', toolRegistrationRouter);*/
 app.use('/configure', configurationRouter);
 app.use('/history', historyRouter);
 /*alertMonitor.registerTool.start();*/

@@ -13,7 +13,7 @@ var efsm = new mmt.EFSM(
         logdata: true,
         onCreation: function () {},
         onDeletion: function () {},
-        events: ['new_response_time', 'new_bandwith', 'timeout.to'],
+        events: ['new_MMT-AppRespTime', 'new_MMT-Bandwidth', 'timeout.to'],
         states: [
             {
                 id: 'init'
@@ -74,7 +74,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'init',
                 to: 'response_time1_received',
-                event: 'new_response_time',
+                event: 'new_MMT-AppRespTime',
                 actions: [{fct: function (active_state, evt, msg){
                         console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                         console.log(evt);
@@ -86,7 +86,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'init',
                 to: 'bandwith1_received',
-                event: 'new_response_time',
+                event: 'new_MMT-AppRespTime',
                 actions: [{fct: function (active_state, evt, msg){
                         console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                         console.log(evt);
@@ -98,7 +98,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'response_time1_received',
                 to: 'response_time2_received',
-                event: 'new_response_time',
+                event: 'new_MMT-AppRespTime',
                 actions: [{fct: function (active_state, evt, msg){
                         console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                         console.log(evt);
@@ -111,7 +111,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'bandwith1_received',
                 to: 'bandwith2_received',
-                event: 'new_bandwith',
+                event: 'new_MMT-Bandwidth',
                 actions: [{fct: function (active_state, evt, msg){
                         console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                         console.log(evt);
@@ -124,7 +124,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'response_time1_received',
                 to: 'bandwith1_received',
-                event: 'new_bandwith',
+                event: 'new_MMT-Bandwidth',
                 conditions: [{fct: function(active_state, evt, msg) {
                     console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                     return (active_state.contextvariables["bandwith_old"].value == 0);
@@ -141,7 +141,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'response_time1_received',
                 to: 'bandwith2_received',
-                event: 'new_bandwith',
+                event: 'new_MMT-Bandwidth',
                 conditions: [{fct: function(active_state, evt, msg) {
                         return (active_state.contextvariables["bandwith_old"].value > 0);
                     }}],
@@ -158,7 +158,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'bandwith1_received',
                 to: 'response_time1_received',
-                event: 'new_response_time',
+                event: 'new_MMT-AppRespTime',
                 conditions: [{fct: function(active_state, evt, msg) {
                         return (active_state.contextvariables["response_time_old"].value == 0);
                     }}],
@@ -174,7 +174,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'bandwith1_received',
                 to: 'response_time2_received',
-                event: 'new_response_time',
+                event: 'new_MMT-AppRespTime',
                 conditions: [{fct: function(active_state, evt, msg) {
                         return (active_state.contextvariables["response_time_old"].value > 0);
                     }}],
@@ -191,7 +191,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'response_time2_received',
                 to: 'recommendation',
-                event: 'new_bandwith',
+                event: 'new_MMT-Bandwidth',
                 conditions: [{fct: function(active_state, evt, msg) {
                         return (active_state.contextvariables["bandwith_old"].value > 0);
                     }}],
@@ -215,7 +215,7 @@ var efsm = new mmt.EFSM(
             {
                 from: 'bandwith2_received',
                 to: 'recommendation',
-                event: 'new_response_time',
+                event: 'new_MMT-AppRespTime',
                 conditions: [{fct: function(active_state, evt, msg) {
                         return (active_state.contextvariables["response_time_old"].value > 0);
                     }}],
