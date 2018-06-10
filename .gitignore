@@ -66,3 +66,4 @@ typings/
 .idea/inspectionProfiles/
 config/config.json
 public/images/
+/routes/elasticSearchTest.js
