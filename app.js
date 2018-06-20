@@ -12,7 +12,6 @@ var configurationRouter = require('./routes/configuration');
 var historyRouter = require('./routes/history');
 var alertMonitor = require('./routes/alertMonitor');
 var machines = require('./routes/machinesCron');
-var redisTest = require('./routes/redis');
 var subscriber = require('./examples/subscriber');
 var measurements = require('./examples/cronGetMeasurements');
 
@@ -37,7 +36,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/configure', configurationRouter);
 app.use('/history', historyRouter);
-app.use('/redis', redisTest);
 /*alertMonitor.registerTool.start();*/
 
 // catch 404 and forward to error handler

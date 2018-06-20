@@ -829,7 +829,7 @@ minimist@~0.0.1:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
-mkdirp@~0.5.0, mkdirp@~0.5.1:
+mkdirp@~0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
@@ -1057,12 +1057,6 @@ promise@^7.0.0:
   resolved "https://registry.yarnpkg.com/promise/-/promise-7.3.1.tgz#064b72602b18f90f29192b8b1bc418ffd1ebd3bf"
   dependencies:
     asap "~2.0.3"
-
-properties-reader@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/properties-reader/-/properties-reader-0.0.16.tgz#a2cc0db9cdd7b81d977d0a59c1dc10c6d1d6ab98"
-  dependencies:
-    mkdirp "~0.5.1"
 
 proto-list@~1.2.1:
   version "1.2.4"
