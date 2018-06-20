@@ -1,3 +1,4 @@
+var efsm;
 EFSM = {
     create: function(options) {
         console.log(options['analysisId']);
@@ -6,7 +7,7 @@ EFSM = {
         var threshold = options['threshold'];
         var analysisId = options['analysisId'];
 
-        var efsm = new mmt.EFSM(
+        efsm = new mmt.EFSM(
             {
                 id: "test_modular_design",
                 hascontext: true,
@@ -189,6 +190,7 @@ EFSM = {
                 ]
             }
         );
+        return efsm;
     },
 };
 module.exports = EFSM;

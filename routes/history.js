@@ -11,11 +11,12 @@ router.get('/:project', function(req, res, next) {
             {
                 model: models.Analysis,
                 require: true,
+                where: {ProjectId: projectId},
                 include: [
                     {
                         model: models.Efsm,
                         require: false
-                    }
+                    },
                 ]
             }
         ]
@@ -33,6 +34,9 @@ router.get('/:project', function(req, res, next) {
             if(id in result){
                 r = result[id];
                 r.count += 1;
+                if(recommendations[i].status == "New") {
+                    r.countNew += 1;
+                }
                 if(recommendations[i].createdAt.getTime() > r.last_updated.getTime()) {
                     r.last_updated = recommendations[i].createdAt;
                     r.status = recommendations[i].status;
@@ -41,8 +45,8 @@ router.get('/:project', function(req, res, next) {
             }
             // if not create element
             else {
-                recom_array = [];
-                recom_array.push(recommendations[i]);
+                measures_array = [];
+                measures_array.push(recommendations[i]);
                 result[id] = {
                     id : id,
                     last_updated : recommendations[i].createdAt,
@@ -51,8 +55,9 @@ router.get('/:project', function(req, res, next) {
                     role : recommendations[i].Analysis.Efsm.role,
                     message : recommendations[i].Analysis.customMessage,
                     count : 1,
+                    countNew : (recommendations[i].status == "New")? 1 : 0,
                     status : recommendations[i].status,
-                    recommendations : recom_array
+                    recommendations : measures_array
                 }
             }
         };
@@ -63,6 +68,22 @@ router.get('/:project', function(req, res, next) {
             dateFormat: dateFormat
         })
     });
+});
+
+router.post('/recommendation/:recommendationId', function (req, res, next) {
+    console.log("POST recommendationId : " + req.params.recommendationId);
+    console.log("POST req : " + req);
+    var recommendationId = req.params.recommendationId;
+    var status = req.body.status;
+    models.Recommendation.update(req.body,
+        {
+            where: {
+                id: recommendationId
+            }
+        }
+    ).then(function (result) {
+        console.log("POST RESULT : " + result);
+    })
 });
 
 function sortByDate(myData) {

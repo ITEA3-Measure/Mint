@@ -64,6 +64,6 @@ typings/
 
 /MINT.iml
 .idea/inspectionProfiles/
-config/config.json
 public/images/
 /routes/elasticSearchTest.js
+/config/config.json

@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var http = require('http');
-var propertiesReader = require('properties-reader');
-var properties = propertiesReader('../config/config.ini');
-var property = properties.get('dev.measure-platform.url');
 var CronJob = require('cron').CronJob;
 
 var measureInstances = ["randomInstance1", "RandomSumInstance1"];

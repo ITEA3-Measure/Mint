@@ -1,19 +1,15 @@
+var config = require('../config/config');
 var express = require('express');
 var router = express.Router();
 var http = require('http');
 var models  = require('../models');
-var propertiesReader = require('properties-reader');
-var properties = propertiesReader('./config/config.ini');
-var property = properties.get('dev.measure-platform.url');
-console.log("dev.measure-platform.url : " + property);
-
 
 Registration = {
     init : function () {
         var json = JSON.stringify({
-            "configurationURL": properties.get('dev.analysis-tool.configurationURL'),
-            "description": properties.get('dev.analysis-tool.description'),
-            "name": properties.get('dev.analysis-tool.name')
+            "configurationURL": config.app.configurationURL,
+            "description": config.app.description,
+            "name": config.app.name
         });
         console.log("JSON: " + json);
         var headers = {
@@ -22,9 +18,9 @@ Registration = {
         };
 
         var options = {
-            host : 'localhost',
-            port : 8085,
-            path : '/api/analysis/register',
+            host : config.measure.host,
+            port : config.measure.port,
+            path : config.measure.registrationPath,
             method : 'PUT',
             headers: headers
         };
@@ -62,9 +58,9 @@ Registration = {
 router.get('/', function(req, res, next) {
 
     var json = JSON.stringify({
-        "configurationURL": properties.get('dev.analysis-tool.configurationURL'),
-        "description": properties.get('dev.analysis-tool.description'),
-        "name": properties.get('dev.analysis-tool.name')
+        "configurationURL": config.app.configurationURL,
+        "description": config.app.description,
+        "name": config.app.name
     });
     console.log("JSON: " + json);
     var headers = {
@@ -73,9 +69,9 @@ router.get('/', function(req, res, next) {
     };
 
     var options = {
-        host : 'localhost',
-        port : 8085,
-        path : '/api/analysis/register',
+        host : config.measure.host,
+        port : config.measure.port,
+        path : config.measure.registerPath,
         method : 'PUT',
         headers: headers
     };

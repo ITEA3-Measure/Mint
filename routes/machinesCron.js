@@ -1,3 +1,4 @@
+var config = require('../config/config');
 var mmt = require('../utils/mmt-correlator/src/efsm');
 var redis = require("redis");
 var util = require("util");
@@ -8,37 +9,90 @@ var modularityEfsm = require('../machines/modularity');
 var codeQualityEfsm = require('../machines/codeQuality');
 var performanceEfsm = require('../machines/performance');
 
-if(process.env.REDIS_URL) {
-    console.log("process.env.REDIS_URL : " + process.env.REDIS_URL);
-    var redisUrl = (process.env.REDIS_URL).split(":");
-    var settings = {
-        eventbus: {
-            type: redisUrl[0],
-            host: redisUrl[2],
-            port: redisUrl[3]
-        }
-    };
-}
-else {
-    console.log("No REDIS_URL");
-    var settings = {
-        eventbus: {
-            type: 'redis',
-            host: '127.0.0.1',
-            port: 6379
-        }
-    };
-}
+var settings = {
+    eventbus: {
+        type: config.redis.type,
+        host: config.redis.host,
+        port: config.redis.port
+    }
+};
 
 mmt.init(settings);
 var publisher = redis.createClient(settings.eventbus.port, settings.eventbus.host);
 publisher.config("SET","notify-keyspace-events", "KEA");
 
+var runningMachines = {};
+
 Machines = {
     init: function() {
         models.Analysis.findAll({
+            include: [
+                {model: models.Efsm,
+                    require: false},
+                {model: models.Project,
+                    require: false}
+            ]
+        }).then(function (analyses) {
+            analyses.forEach(function (analysis) {
+                console.log(analysis.Efsm.file);
+                if((analysis.Efsm.file).includes("requirements")) {
+                    var m = requirementsEfsm.create({
+                        analysisId :analysis.id,
+                        threshold : analysis.Efsm.threshold,
+                        mmt : mmt,
+                        publisher : publisher
+                    });
+                    runningMachines[analysis.id]=m;
+/*                    if (typeof m == "object") {
+                        console.log("Object.keys(m) : " +Object.keys(m));
+                    }*/
+                }
+                else if((analysis.Efsm.file).includes("vulnerabilities")) {
+                    var m = vulnerabilitiesEfsm.create({
+                        analysisId :analysis.id,
+                        threshold : analysis.Efsm.threshold,
+                        mmt : mmt,
+                        publisher : publisher
+                    });
+                    runningMachines[analysis.id]=m;
+                }
+                else if((analysis.Efsm.file).includes("modularity")) {
+                    var m = modularityEfsm.create({
+                        analysisId :analysis.id,
+                        threshold : analysis.Efsm.threshold,
+                        mmt : mmt,
+                        publisher : publisher
+                    });
+                    runningMachines[analysis.id]=m;
+                }
+                else if((analysis.Efsm.file).includes("codeQuality")) {
+                    var m = codeQualityEfsm.create({
+                        analysisId :analysis.id,
+                        threshold : analysis.Efsm.threshold,
+                        mmt : mmt,
+                        publisher : publisher
+                    });
+                    runningMachines[analysis.id]=m;
+                }
+                else if((analysis.Efsm.file).includes("performance")) {
+                    var m = performanceEfsm.create({
+                        analysisId :analysis.id,
+                        threshold : analysis.Efsm.threshold,
+                        mmt : mmt,
+                        publisher : publisher
+                    });
+                    runningMachines[analysis.id]=m;
+                }
+            })
+        });
+    },
+    getRunningMachines : function () {
+        return runningMachines;
+    },
+    initMachineAnalysis : function (analysisId) {
+        models.Analysis.findAll({
             where: {
-                status: true
+                id: analysisId
             },
             include: [
                 {model: models.Efsm,
@@ -50,48 +104,53 @@ Machines = {
             analyses.forEach(function (analysis) {
                 console.log(analysis.Efsm.file);
                 if((analysis.Efsm.file).includes("requirements")) {
-                    requirementsEfsm.create({
+                    var m = requirementsEfsm.create({
                         analysisId :analysis.id,
                         threshold : analysis.Efsm.threshold,
                         mmt : mmt,
                         publisher : publisher
                     });
+                    runningMachines[analysis.id]=m;
                 }
                 else if((analysis.Efsm.file).includes("vulnerabilities")) {
-                    vulnerabilitiesEfsm.create({
+                    var m = vulnerabilitiesEfsm.create({
                         analysisId :analysis.id,
                         threshold : analysis.Efsm.threshold,
                         mmt : mmt,
                         publisher : publisher
                     });
+                    runningMachines[analysis.id]=m;
                 }
                 else if((analysis.Efsm.file).includes("modularity")) {
-                    modularityEfsm.create({
+                    var m = modularityEfsm.create({
                         analysisId :analysis.id,
                         threshold : analysis.Efsm.threshold,
                         mmt : mmt,
                         publisher : publisher
                     });
+                    runningMachines[analysis.id]=m;
                 }
                 else if((analysis.Efsm.file).includes("codeQuality")) {
-                    codeQualityEfsm.create({
+                    var m = codeQualityEfsm.create({
                         analysisId :analysis.id,
                         threshold : analysis.Efsm.threshold,
                         mmt : mmt,
                         publisher : publisher
                     });
+                    runningMachines[analysis.id]=m;
                 }
                 else if((analysis.Efsm.file).includes("performance")) {
-                    performanceEfsm.create({
+                    var m = performanceEfsm.create({
                         analysisId :analysis.id,
                         threshold : analysis.Efsm.threshold,
                         mmt : mmt,
                         publisher : publisher
                     });
+                    runningMachines[analysis.id]=m;
                 }
             })
         });
-    },
+    }
 };
 
 module.exports = Machines;

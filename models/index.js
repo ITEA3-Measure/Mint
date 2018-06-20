@@ -1,20 +1,16 @@
+var config = require('../config/config');
 var fs        = require('fs');
 var path      = require('path');
 const Sequelize = require('sequelize');
 var basename  = path.basename(__filename);
-const mysql = require('mysql2');
-var propertiesReader = require('properties-reader');
-var properties = propertiesReader('./config/config.ini');
-var property = properties.get('dev.measure-platform.url');
-console.log("dev.measure-platform.url : " + property);
 var db = {};
 
 const sequelize = new Sequelize({
-    database: properties.get('dev.mysql.datasource.database'),
-    username: properties.get('dev.mysql.datasource.username'),
-    password: properties.get('dev.mysql.datasource.password'),
-    dialect: 'mysql',
-    host: properties.get('dev.mysql.datasource.host'),
+    database: config.db.name,
+    username: config.db.username,
+    password: config.db.password,
+    dialect: config.db.dialect,
+    host: config.db.host,
     pool: {
         max: 5,
         min: 0,

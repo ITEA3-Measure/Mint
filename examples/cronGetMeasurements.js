@@ -1,3 +1,4 @@
+var config = require('../config/config');
 var express = require('express');
 var http = require('http');
 var CronJob = require('cron').CronJob;
@@ -13,27 +14,13 @@ var models  = require('../models');
 // TODO: Setear manualmente las métricas necesarias?
 // TODO: actualizar maquinas activas y valores de threshold en cron
 
-if(process.env.REDIS_URL) {
-    console.log("process.env.REDIS_URL : " + process.env.REDIS_URL);
-    var redisUrl = (process.env.REDIS_URL).split(":");
-    var settings = {
-        eventbus: {
-            type: redisUrl[0],
-            host: redisUrl[2],
-            port: redisUrl[3]
-        }
-    };
-}
-else {
-    console.log("No REDIS_URL");
-    var settings = {
-        eventbus: {
-            type: 'redis',
-            host: '127.0.0.1',
-            port: 6379
-        }
-    };
-}
+var settings = {
+    eventbus: {
+        type: config.redis.type,
+        host: config.redis.host,
+        port: config.redis.port
+    }
+};
 
 mmt.init(settings);
 
@@ -41,7 +28,7 @@ var publisher = redis.createClient(settings.eventbus.port, settings.eventbus.hos
 publisher.config("SET","notify-keyspace-events", "KEA");
 
 var cronMetric = new CronJob({
-    cronTime: '*/100 * * * * *',
+    cronTime: '*/10 * * * * *',
     onTick: function () {
         console.log('job ticked');
         // find all measurements from analysis that are enabled
@@ -78,9 +65,8 @@ var cronMetric = new CronJob({
                 };
                 // TODO: take from config
                 var options = {
-                    host : '194.2.241.244',
-                    // port : 8085,
-                    path : '/measure/api/measurement/find',
+                    host :  config.measure.host,
+                    path :  config.measure.measurementsPath,
                     method : 'POST',
                     headers: headers
                 };
@@ -112,75 +98,6 @@ var cronMetric = new CronJob({
                 req.end();
             });
         });
-    /*    models.Analysis.findAll({
-            where: {
-                status: true
-            },
-            include: [
-                {model: models.Efsm,
-                    require: false},
-                {model: models.Project,
-                    require: false},
-                {model: models.Instance,
-                    require: false}
-            ]
-        }).then(function (analyses) {
-            analyses.forEach(function (analysis) {
-                console.log(analysis.Efsm.file);
-                // console.log(analysis.Instances);
-                analysis.Instances.forEach(function (instance) {
-                    console.log("    - " + instance.get('name'));
-                    // get measurement value and put in redis
-                    // GET MEASUREMENTS
-                    var json = JSON.stringify({
-                        "measureInstance": instance.get('name'),
-                        "page": 1,
-                        "pageSize": 1
-                    });
-                    console.log("JSON: " + json);
-
-                    var headers = {
-                        'Content-Type': 'application/json',
-                        'Content-Length': json.length
-                    };
-                    // TODO: take from config
-                    var options = {
-                        host : '194.2.241.244',
-                        // port : 8085,
-                        path : '/measure/api/measurement/find',
-                        method : 'POST',
-                        headers: headers
-                    };
-                    var req = http.request(options, function (res) {
-                        console.log('CONFIG STATUS: ' + res.statusCode);
-                        console.log('CONFIG HEADERS: ' + JSON.stringify(res.headers));
-                        res.setEncoding('utf8');
-                        var body = '';
-                        res.on("data", function (data) {
-                            // console.log("CONFIG BODY: " + data);
-                            body+=data.toString();
-                        });
-                        res.on("end", function () {
-                            console.log("No more data in response");
-                            body = JSON.parse(body);
-                            body.forEach(function(measurement) {
-                                measurement = measurement.values;
-                                console.log("-- " + measurement.postDate + " - " + measurement.value);
-                                publisher.publish('new_number_issues', JSON.stringify(MMT.attributeJSON(measurement.postDate, instance.get('name'), measurement.value, [], 'i1')));
-                            });
-                        });
-                    });
-
-                    req.on('error', function(e) {
-                        console.log('problem with request: ' + e.message);
-                    });
-
-                    var output = req.output;
-                    req.write(json);
-                    req.end();
-                })
-            });
-        });*/
     }
 });
 

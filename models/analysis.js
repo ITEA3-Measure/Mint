@@ -32,12 +32,14 @@ module.exports = function (sequelize, DataTypes) {
     Analysis.associate = function (models) {
         models.Analysis.belongsTo(models.Project, {
             onDelete: "CASCADE",
+            hooks: true,
             foreignKey: {
                 allowNull: false
             }
         });
         models.Analysis.belongsTo(models.Efsm, {
             onDelete: "CASCADE",
+            hooks: true,
             foreignKey: {
                 allowNull: false
             }

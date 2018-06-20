@@ -1,11 +1,10 @@
-var express = require('express');
+var config = require('../config/config');
 var http = require('http');
-var propertiesReader = require('properties-reader');
-var properties = propertiesReader('./config/config.ini');
-var property = properties.get('dev.measure-platform.url');
 var CronJob = require('cron').CronJob;
 var models  = require('../models');
+var efsms = require('../routes/machinesCron');
 
+console.log("---- alertMonitor " + config.app.name);
 var registerTool = new CronJob({
     cronTime: '*/1 * * * * *',
     onTick: function() {
@@ -15,17 +14,15 @@ var registerTool = new CronJob({
         };
 
         var options = {
-            host : 'localhost',
-            port : 8085,
-            path : '/api/analysis/alert/list/?id=MiNT',
+            host : config.measure.host,
+            port : config.measure.port,
+            path : config.measure.alertPath + '?id='+config.app.name,
             method : 'GET',
             headers: headers
         };
         // AlertReport alerts = restTemplate.getForObject(serverURL + "api/analysis/alert/list/?id=" + analysisToolId,AlertReport.class);
 
         http.get(options, function (res) {
-            // console.log('STATUS: ' + res.statusCode);
-            // console.log('HEADERS: ' + JSON.stringify(res.headers));
             res.setEncoding('utf8');
             var body = '';
             res.on("data", function (data) {
@@ -106,12 +103,14 @@ function configurate(projectId, projectAnalysisId) {
                         }).then(function (measures) {
                             measures.forEach(function (measure) {
                                     models.Instance.create({
-                                        name: "",
+                                        name: "TEST",
                                         AnalysisId: analysis.get('id'),
                                         MeasureId: measure.get('id')
                                     })
                             })
-                        })
+                        });
+                        // run machine for analysis
+                        efsms.initMachineAnalysis(analysis.get('id'));
                     })
                 })
             })
@@ -119,8 +118,8 @@ function configurate(projectId, projectAnalysisId) {
 
         var json = JSON.stringify({
             "projectAnalysisId": projectAnalysisId,
-            "viewUrl": properties.get('dev.analysis-tool.historyURL')+project.get('id'),
-            "configurationUrl": properties.get('dev.analysis-tool.configureURL')+project.get('id')
+            "viewUrl": config.app.historyURL+project.get('id'),
+            "configurationUrl": config.app.configureURL+project.get('id')
         });
         console.log("JSON: " + json);
 
@@ -130,9 +129,9 @@ function configurate(projectId, projectAnalysisId) {
         };
 
         var options = {
-            host : 'localhost',
-            port : 8085,
-            path : '/api/analysis/configure',
+            host : config.measure.host,
+            port : config.measure.port,
+            path : config.measure.configurePath,
             method : 'PUT',
             headers: headers
         };
@@ -164,7 +163,9 @@ function deleteProject(projectId) {
     models.Project.destroy({
         where: {measureProjectId: projectId}
     }).then(models.Recommendation.destroy({
-        where: {analysisId: null}
+        where: {AnalysisId: null}
+    })).then(models.Instance.destroy({
+        where: {AnalysisId: null}
     }));
 
 

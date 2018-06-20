@@ -24,12 +24,14 @@ module.exports = function (sequelize, DataTypes) {
     Instance.associate = function (models) {
         models.Instance.belongsTo(models.Analysis, {
             onDelete: "CASCADE",
+            hooks: true,
             foreignKey: {
                 allowNull: false
             }
         });
         models.Instance.belongsTo(models.Measure, {
             onDelete: "CASCADE",
+            hooks: true,
             foreignKey: {
                 allowNull: false
             }

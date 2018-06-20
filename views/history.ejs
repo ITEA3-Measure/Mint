@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!--<meta http-equiv="refresh" content="5"/>-->
 
-    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="/stylesheets/style.css" rel="stylesheet" type="text/css">
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">-->
 </head>
@@ -35,7 +35,10 @@
                 data-id="<%= result[i].id %>" data-toggle="modal" data-target="#recommendationModal">
                 <td><%= dateFormat(result[i].last_updated) %></td>
                 <td><%= result[i].machine_name %></td>
-                <td><%= result[i].status %><span class="badge badge-secondary"> <%= result[i].count %></span></td>
+                <td><%= result[i].status %><br>
+                    <% if(result[i].status == "New"){ %> <span class="badge badge-warning"> <%= result[i].countNew %></span> <% } %>
+                    <span class="badge badge-secondary"> <%= result[i].count %></span>
+                </td>
                 <td><%= result[i].category %></td>
                 <td><%= result[i].role %></td>
                 <td><%= result[i].message %></td>

@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
         description: DataTypes.TEXT,
         status: {
             type: DataTypes.STRING,
-            defaultValue: "Open"
+            defaultValue: "Active"
         },
         createdAt: {
             allowNull: false,
@@ -29,6 +29,7 @@ module.exports = function (sequelize, DataTypes) {
     Recommendation.associate = function (models) {
         models.Recommendation.belongsTo(models.Analysis, {
             onDelete: "CASCADE",
+            hooks: true,
             foreignKey: {
                 allowNull: false
             }

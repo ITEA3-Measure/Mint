@@ -24,6 +24,7 @@ module.exports = function (sequelize, DataTypes) {
     Measure.associate = function (models) {
         models.Measure.belongsTo(models.Efsm, {
             onDelete: "CASCADE",
+            hooks: true,
             foreignKey: {
                 allowNull: false
             }
