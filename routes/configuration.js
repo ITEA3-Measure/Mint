@@ -1,3 +1,5 @@
+var config = require('../config/config');
+var http = require('http');
 var express = require('express');
 var router = express.Router();
 var models  = require('../models');
@@ -16,6 +18,7 @@ router.post('/:project', function (req, res, next) {
         name: name
     });
 });
+
 router.get('/:project', function (req, res, next) {
     console.log("req.params.project : " + req.params.project);
     var projectId = req.params.project;
@@ -27,7 +30,15 @@ router.get('/:project', function (req, res, next) {
             {model: models.Efsm,
                 require: false},
             {model: models.Project,
-                require: false}
+                require: true},
+            {model: models.Instance,
+                require: true,
+                include: [
+                    {
+                        model: models.Measure,
+                        require:true
+                    }
+                ]}
         ]
     }).then(function (analysis) {
         var result = {};
@@ -81,14 +92,6 @@ router.post('/analysis/:analysisId', function (req, res, next) {
             res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
             res.redirect(req.get('referer'));
         })
-    });
-});
-
-router.get('/analysis/:analysisId', function (req, res, next) {
-    var analysisId = req.params.analysisId;
-    console.log("GET req.params.analysisId : " + analysisId);
-    models.Analysis.findById(analysisId).then(function (analysis) {
-        res.json(analysis);
     });
 });
 

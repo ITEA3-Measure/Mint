@@ -4,24 +4,22 @@ $(document).ready(function() {
 });
 // Configuration Functions =============================================================
 $('button.edit-machine').click(function(e) {
-    analyses = {};
-    console.log("Editing machine");
     var machineId = $(this).closest('tr').data('id');
-    console.log("id : " + machineId);
+    var analysis = analyses[machineId];
+    var list = analysis.Instances;
     var modal = $('#editModal');
-    $.getJSON('/configure/analysis/' + machineId, function (data) {
-        // set values in modal
-        // console.log("data : " + data);
-        modal.find('#machineName').val(data.name);
-        modal.find('#machineDescription').val(data.description);
-        modal.find('#machineRecommendation').val(data.customMessage);
-        modal.find('#machineThreshold').val(data.customThreshold);
-        modal.data('id', machineId);
-        // modal.find('form').attr('action', '/configure/analysis/'+machineId);
-        // open modal
-        //  jQuery.noConflict();
-        //  $('#editModal').modal();
-    })
+    modal.find('#machineName').val(analysis.name);
+    modal.find('#machineDescription').val(analysis.description);
+    modal.find('#machineRecommendation').val(analysis.customMessage);
+    modal.find('#machineThreshold').val(analysis.customThreshold);
+    modal.data('id', machineId);
+    $("#instancesModalTable tbody").empty();
+    for (var i = 0; i < list.length; i++) {
+        $('#instancesModalTable tbody').append(
+            '<tr data-id =' + list[i].id +'><td>'+ list[i].Measure.name +'</td><td>'
+            +list[i].name+'</td></tr>');
+
+    }
 });
 
 $('#editModal').find('form').submit(function (e) {
@@ -34,13 +32,15 @@ $('#editModal').find('form').submit(function (e) {
             description : modal.find('#machineDescription').val(),
             customMessage : modal.find('#machineRecommendation').val(),
             customThreshold : modal.find('#machineThreshold').val()
-        }).done($('#editModal  .close').click());
+        }).done(function () {
+        location.reload(true);
+    //    done($('#editModal  .close').click());
+    })
 });
 
+
 $('button.turn-off').click(function(e) {
-    console.log("Turning off machine");
     var machineId = $(this).closest('tr').data('id');
-    console.log("id : " + machineId);
     $.post('/configure/analysis/' + machineId,
         {
             status : false
@@ -49,9 +49,7 @@ $('button.turn-off').click(function(e) {
 });
 
 $('button.turn-on').click(function(e) {
-    console.log("Turning on machine");
     var machineId = $(this).closest('tr').data('id');
-    console.log("id : " + machineId);
     $.post('/configure/analysis/' + machineId,
         {
             status : true

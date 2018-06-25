@@ -49,8 +49,8 @@ var cronMetric = new CronJob({
             ]
         }).then(function (instances) {
             instances.forEach(function (instance) {
-                console.log(instance.Analysis.Efsm.file);
-                console.log("     - " + instance.Measure.name + " : " + instance.name);
+/*                console.log(instance.Analysis.Efsm.file);
+                console.log("     - " + instance.Measure.name + " : " + instance.name);*/
                 // GET MEASUREMENTS
                 var json = JSON.stringify({
                     "measureInstance": instance.name,
@@ -63,10 +63,9 @@ var cronMetric = new CronJob({
                     'Content-Type': 'application/json',
                     'Content-Length': json.length
                 };
-                // TODO: take from config
                 var options = {
-                    host :  config.measure.host,
-                    path :  config.measure.measurementsPath,
+                    host :  '194.2.241.244',
+                    path :  '/measure/api/measurement/find',
                     method : 'POST',
                     headers: headers
                 };
@@ -78,6 +77,9 @@ var cronMetric = new CronJob({
                         body+=data.toString();
                     });
                     res.on("end", function () {
+                        if(body.length == 0) {
+                            console.log(" - NO DATA FOR INSTANCE " + instance.name);
+                        }
                         body = JSON.parse(body);
                         if(body.length > 0) {
                             var measurement = body[0].values;
@@ -92,8 +94,6 @@ var cronMetric = new CronJob({
                 req.on('error', function(e) {
                     console.log('problem with request: ' + e.message);
                 });
-
-                var output = req.output;
                 req.write(json);
                 req.end();
             });
