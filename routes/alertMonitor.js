@@ -68,10 +68,7 @@ var registerTool = new CronJob({
 });
 
 function configurate(projectId, projectAnalysisId) {
-    console.log("------ configurate ------");
-    console.log("projectId " + projectId);
-    console.log("projectAnalysisId " + projectAnalysisId);
-
+    var instances = '';
     // create project in local DB and Analysis
     var projectValues = {
         name: "",
@@ -84,11 +81,36 @@ function configurate(projectId, projectAnalysisId) {
     }).spread(function (project, created) {
         console.log("PROYECT CREATED");
         if(created) {
+
+            // get measure instances
+            var headers = {
+                'Content-Type': 'application/json'
+            };
+
+            var options = {
+                host : config.measure.host,
+                port : config.measure.port,
+                path : config.measure.projectInstances + projectId,
+                method : 'GET',
+                headers: headers
+            };
+
+            var r = http.get(options, function (res) {
+                res.setEncoding('utf8');
+                res.on("data", function (data) {
+                    // console.log("BODY data: " + data);
+                    instances += data;
+                });
+                res.on('end', function () {
+                    instances = JSON.parse(instances);
+                })
+            });
+            r.end();
             models.Efsm.findAll().then(function (machines) {
                 machines.forEach(function (machine) {
                     console.log("creating analysis for machine " + machine);
                     models.Analysis.create({
-                        status : true,
+                        status : false,
                         name: machine.name,
                         description: machine.get('description'),
                         customThreshold: machine.get('threshold'),
@@ -98,17 +120,26 @@ function configurate(projectId, projectAnalysisId) {
                     }).then(function (analysis) {
                         console.log("Analysis created with id : " + analysis.get('id'));
                         console.log("for machine id : " + machine.get('id'));
+
                         models.Measure.findAll({
                             where: {EfsmId: machine.get('id')}
                         }).then(function (measures) {
                             measures.forEach(function (measure) {
+                                instanceName = "";
+                                // get measure instance for measure
+                                for(var i = 0; i < instances.length; i++) {
+                                    if(instances[i].measureName == measure.get('name')) {
+                                        instanceName = instances[i].instanceName;
+                                    }
+                                }
                                     models.Instance.create({
-                                        name: "TEST",
+                                        name: instanceName,
                                         AnalysisId: analysis.get('id'),
                                         MeasureId: measure.get('id')
                                     })
                             })
                         });
+                        // set instances
                         // run machine for analysis
                         efsms.initMachineAnalysis(analysis.get('id'));
                     })
@@ -121,7 +152,6 @@ function configurate(projectId, projectAnalysisId) {
             "viewUrl": config.app.historyURL+project.get('id'),
             "configurationUrl": config.app.configureURL+project.get('id')
         });
-        console.log("JSON: " + json);
 
         var headers = {
             'Content-Type': 'application/json',
@@ -137,8 +167,6 @@ function configurate(projectId, projectAnalysisId) {
         };
 
         var req = http.request(options, function (res) {
-            console.log('CONFIG STATUS: ' + res.statusCode);
-            console.log('CONFIG HEADERS: ' + JSON.stringify(res.headers));
             res.setEncoding('utf8');
             var output = '';
             res.on("data", function (data) {

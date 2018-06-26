@@ -66,12 +66,6 @@ router.post('/analysis/:analysisId', function (req, res, next) {
     if(req.body.customThreshold) {
         m[analysisId].contextvars.threshold.value = req.body.threshold;
     }
-/*    for(var i = 0; i < m.length; i++) {
-        console.log(m[i].id);
-        console.log(m[i].contextvars);
-        console.log(m[i].contextvars.threshold);
-        console.log(m[i].contextvars.threshold.value = 0);
-    }*/
     models.Analysis.update(req.body,
         {
             where: {

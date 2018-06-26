@@ -15,8 +15,10 @@ $('button.edit-machine').click(function(e) {
     modal.data('id', machineId);
     $("#instancesModalTable tbody").empty();
     for (var i = 0; i < list.length; i++) {
+        var color = "";
+        if(list[i].name == "") color = "table-danger";
         $('#instancesModalTable tbody').append(
-            '<tr data-id =' + list[i].id +'><td>'+ list[i].Measure.name +'</td><td>'
+            '<tr data-id =' + list[i].id + ' class=' + color + '><td>'+ list[i].Measure.name +'</td><td>'
             +list[i].name+'</td></tr>');
 
     }
@@ -50,6 +52,14 @@ $('button.turn-off').click(function(e) {
 
 $('button.turn-on').click(function(e) {
     var machineId = $(this).closest('tr').data('id');
+    var analysis = analyses[machineId];
+    var list = analysis.Instances;
+    for (var i = 0; i < list.length; i++) {
+        if(list[i].name == "") {
+            alert("Can't Activate machine. There's no instance of measure " + list[i].Measure.name);
+            return;
+        }
+    }
     $.post('/configure/analysis/' + machineId,
         {
             status : true
