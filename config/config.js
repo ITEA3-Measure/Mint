@@ -23,7 +23,8 @@ const development = {
         alertPath: '/api/analysis/alert/list/',
         registrationPath: '/api/analysis/register',
         configurePath: '/api/analysis/configure',
-        measurementsPath: '/measure/api/measurement/find'
+        measurementsPath: '/api/measurement/find',
+        projectInstances: '/api/project-measure-instances/'
     },
     redis: {
         type: 'redis',
@@ -48,6 +49,15 @@ const test = {
         name: 'mint_db',
         username: 'root',
         password: 'root'
+    },
+    measure: {
+        host: 'localhost',
+        port: 8085,
+        alertPath: '/api/analysis/alert/list/',
+        registrationPath: '/api/analysis/register',
+        configurePath: '/api/analysis/configure',
+        measurementsPath: '/api/measurement/find',
+        projectInstances: '/api/project-measure-instances/'
     },
     redis: {
         type: 'redis',
@@ -79,7 +89,8 @@ const production = {
         alertPath: '/api/analysis/alert/list/',
         registrationPath: '/api/analysis/register',
         configurePath: '/api/analysis/configure',
-        measurementsPath: '/measure/api/measurement/find'
+        measurementsPath: '/measure/api/measurement/find',
+        projectInstances: 'measure/api/project-measure-instances/'
     },
     redis: {
         type: 'redis',
