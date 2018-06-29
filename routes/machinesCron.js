@@ -38,7 +38,7 @@ Machines = {
                 if((analysis.Efsm.file).includes("requirements")) {
                     var m = requirementsEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -50,7 +50,7 @@ Machines = {
                 else if((analysis.Efsm.file).includes("vulnerabilities")) {
                     var m = vulnerabilitiesEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -59,7 +59,7 @@ Machines = {
                 else if((analysis.Efsm.file).includes("modularity")) {
                     var m = modularityEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -68,7 +68,7 @@ Machines = {
                 else if((analysis.Efsm.file).includes("codeQuality")) {
                     var m = codeQualityEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -77,7 +77,7 @@ Machines = {
                 else if((analysis.Efsm.file).includes("performance")) {
                     var m = performanceEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -106,7 +106,7 @@ Machines = {
                 if((analysis.Efsm.file).includes("requirements")) {
                     var m = requirementsEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -115,7 +115,7 @@ Machines = {
                 else if((analysis.Efsm.file).includes("vulnerabilities")) {
                     var m = vulnerabilitiesEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -124,7 +124,7 @@ Machines = {
                 else if((analysis.Efsm.file).includes("modularity")) {
                     var m = modularityEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -133,7 +133,7 @@ Machines = {
                 else if((analysis.Efsm.file).includes("codeQuality")) {
                     var m = codeQualityEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
@@ -142,7 +142,7 @@ Machines = {
                 else if((analysis.Efsm.file).includes("performance")) {
                     var m = performanceEfsm.create({
                         analysisId :analysis.id,
-                        threshold : analysis.Efsm.threshold,
+                        threshold : analysis.customThreshold,
                         mmt : mmt,
                         publisher : publisher
                     });
