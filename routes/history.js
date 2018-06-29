@@ -37,7 +37,7 @@ router.get('/:project', function(req, res, next) {
                 if(recommendations[i].status == "New") {
                     r.countNew += 1;
                 }
-                if(recommendations[i].createdAt.getTime() > r.last_updated.getTime()) {
+                if(recommendations[i].createdAt > r.last_updated) {
                     r.last_updated = recommendations[i].createdAt;
                     r.status = recommendations[i].status;
                 }
@@ -94,9 +94,9 @@ function sortByDate(myData) {
 };
 
 function compare(a,b) {
-    if (a.createdAt.getTime() < b.createdAt.getTime())
+    if (a.createdAt < b.createdAt)
         return 1;
-    if (a.createdAt.getTime() > b.createdAt.getTime())
+    if (a.createdAt > b.createdAt)
         return -1;
     return 0;
 }

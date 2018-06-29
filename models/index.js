@@ -11,6 +11,18 @@ const sequelize = new Sequelize({
     password: config.db.password,
     dialect: config.db.dialect,
     host: config.db.host,
+    timezone: 'Europe/Paris',
+    dialectOptions: {
+        useUTC: false, //for reading from database
+        dateStrings: true,
+
+        typeCast: function (field, next) { // for reading from database
+            if (field.type === 'DATETIME') {
+                return field.string()
+            }
+            return next()
+        },
+    },
     pool: {
         max: 5,
         min: 0,
