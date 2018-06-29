@@ -1,7 +1,11 @@
 # MINT-	Metrics Intelligence Tool
 MINT is a software solution designed to correlate metrics from different software development life cycle in order to provide valuable recommendations to different actors impacting the software development process. MINT considers the different measurements collected by the MEASURE platform as events occurring at runtime.  The correlation is designed as extended finite state machines (EFSMs) allowing to perform Complex Event Processing (CEP) in order to determine the possible actions that can be taken to improve the diverse stages of the software life cycle and thus the global software quality and cost.
 
-Documentation : https://github.com/ersilva/Mint/wiki
+#### Documentation
+https://github.com/ersilva/Mint/wiki
+#### Related
+Sarah Dahab, Erika Silva, Stephane Maag, Ana Rosa Cavalli, Wissam Mallouli. *Enhancing software development process quality based on metrics correlation and suggestion*. In the 13th Internation Conference on Software Technologies (ICSOFT 2018), Porto, Portugal, 26-28 July 2018.
+[(PDF)](https://www.dropbox.com/s/hjimvxqcoyx3yo2/ICSOFT_2018_42_CR.pdf?dl=0)
 ## MEASURE platform
 The Measure Platform is a web application which allows to collect, calculate, store and visualize measurements by execution of measures defined in SMM (Structured Metrics Metamodel).
 
