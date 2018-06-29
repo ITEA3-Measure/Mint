@@ -33,7 +33,7 @@
         <% for(var i in result) {%>
             <tr class=<% if(result[i].status == "New"){ %> <%= "table-warning" %> <% } else { %> <%= "table" %> <% } %>
                 data-id="<%= result[i].id %>" data-toggle="modal" data-target="#recommendationModal">
-                <td><%= dateFormat(result[i].last_updated) %></td>
+                <td><span class="hidden"><%= dateFormat(result[i].last_updated, "yyyymmddHHMMss") %></span><%= dateFormat(result[i].last_updated) %></td>
                 <td><%= result[i].machine_name %></td>
                 <td><%= result[i].status %><br>
                     <% if(result[i].status == "New"){ %> <span class="badge badge-warning"> <%= result[i].countNew %></span> <% } %>
@@ -83,7 +83,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script>
 <script type='text/javascript'>
-    var recommendations =<%-JSON.stringify(result)%>
+    var recommendations =<%-JSON.stringify(result)%>;
 </script>
 </body>
 </html>

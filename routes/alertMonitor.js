@@ -64,7 +64,7 @@ var registerTool = new CronJob({
         });
     },
     start: false,
-    timeZone: 'America/Los_Angeles'
+    timeZone: 'Europe/Paris'
 });
 
 function configurate(projectId, projectAnalysisId) {

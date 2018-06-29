@@ -59,6 +59,6 @@ function markAsActive(row) {
 
 function dataTable() {
     $('#recommendationTable').DataTable( {
-        "order": [[ 0, 'asc' ]]
+        "order": [[ 0, 'desc' ]]
     } );
 }
