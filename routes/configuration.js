@@ -56,17 +56,27 @@ router.get('/:project', function (req, res, next) {
 router.post('/analysis/:analysisId', function (req, res, next) {
     var analysisId = req.params.analysisId;
     console.log("POST req.params.analysisId : " + analysisId);
-    console.log("req.body.name : " + req.body.name);
-    console.log("req.body.description : " + req.body.description);
-    console.log("req.body.customMessage : " + req.body.customMessage);
-    console.log("req.body.customThreshold : " + req.body.customThreshold);
-    console.log("req.body.status : " + req.body.status);
+
+    var updatedValues;
+    if(req.body.status) {
+        updateValues = {
+            status: req.body.status
+        };
+    }
+    else {
+        updateValues = {
+            name: req.body.name,
+            description: req.body.description,
+            customMessage : req.body.customMessage,
+            customThreshold : req.body.customThreshold
+        };
+    }
 
     var m = machines.getRunningMachines();
     if(req.body.customThreshold) {
-        m[analysisId].contextvars.threshold.value = req.body.threshold;
+        m[analysisId].contextvars.threshold.value = parseFloat(req.body.customThreshold);
     }
-    models.Analysis.update(req.body,
+    models.Analysis.update(updateValues,
         {
             where: {
                 id: analysisId
