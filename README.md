@@ -11,6 +11,11 @@ Documentation : https://github.com/ITEA3-Measure/MeasurePlatform/wiki
 
 MINT is integrated into the MEASURE platform through the MEASURE Analysis Platform API, embedded into the platform web application.
 
-![](https://www.dropbox.com/s/luluo6n6564291w/config-0.PNG)
-![](https://www.dropbox.com/s/o5oo7e5ztxacljc/config-1.PNG)
-![](https://www.dropbox.com/s/egx9bptojue2jus/recommendations-1.PNG)
+**Measure Analysis configuration page**
+![](https://www.dropbox.com/s/luluo6n6564291w/config-0.PNG?dl=1)
+
+**Mint configuration page**
+![](https://www.dropbox.com/s/o5oo7e5ztxacljc/config-1.PNG?dl=1)
+
+**Mint recommendations**
+![](https://www.dropbox.com/s/egx9bptojue2jus/recommendations-1.PNG?dl=1)
