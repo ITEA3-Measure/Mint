@@ -1,3 +1,4 @@
+var config = require('../config/config');
 var efsm;
 EFSM = {
     create: function(options) {
@@ -73,7 +74,7 @@ EFSM = {
                                 console.log("number_issues : " + active_state.contextvariables["number_issues"].value);
                                 console.log("number_reopen_issues : " + active_state.contextvariables["number_reopen_issues"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 5000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'init',
@@ -86,7 +87,7 @@ EFSM = {
                                 console.log("number_issues : " + active_state.contextvariables["number_issues"].value);
                                 console.log("number_reopen_issues : " + active_state.contextvariables["number_reopen_issues"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 5000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'number_issues_received',
@@ -97,7 +98,7 @@ EFSM = {
                                 console.log(evt);
                                 active_state.contextvariables["number_issues"].value = msg.data.value;
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 5000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'number_reopen_issues_received',
@@ -108,7 +109,7 @@ EFSM = {
                                 console.log(evt);
                                 active_state.contextvariables["number_reopen_issues"].value = msg.data.value;
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 5000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'number_reopen_issues_received',
@@ -134,7 +135,7 @@ EFSM = {
                                     + " threshold : " + active_state.contextvariables["threshold"].value;
                                 publisher.publish('recommendations', JSON.stringify(msg));
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 2000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: 1000, name: 'to'}}]
                     },
                     {
                         from: 'number_issues_received',
@@ -160,7 +161,7 @@ EFSM = {
                                     + " threshold : " + active_state.contextvariables["threshold"].value;
                                 publisher.publish('recommendations', JSON.stringify(msg));
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 2000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: 1000, name: 'to'}}]
                     },
                     {
                         from: 'number_reopen_issues_received',

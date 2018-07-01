@@ -7,12 +7,6 @@ var mmt = require('../utils/mmt-correlator/src/efsm');
 var redis = require("redis");
 var util = require("util");
 var models  = require('../models');
-// Ver como se llaman las instancias de las metricas que necesito en el proyecto
-// almacenar el nombre y revisar cada cierto tiempo que no haya cambiado
-// por cada instancia correr el cron
-// TODO: Validar que las metricas que necesito existan al momento de activar una máquina
-// TODO: Setear manualmente las métricas necesarias?
-// TODO: actualizar maquinas activas y valores de threshold en cron
 
 var settings = {
     eventbus: {
@@ -28,7 +22,7 @@ var publisher = redis.createClient(settings.eventbus.port, settings.eventbus.hos
 publisher.config("SET","notify-keyspace-events", "KEA");
 
 var cronMetric = new CronJob({
-    cronTime: '*/10 * * * * *',
+    cronTime: config.app.measurementsCronTime,
     onTick: function () {
         console.log('job ticked');
         // find all measurements from analysis that are enabled
@@ -49,23 +43,20 @@ var cronMetric = new CronJob({
             ]
         }).then(function (instances) {
             instances.forEach(function (instance) {
-/*                console.log(instance.Analysis.Efsm.file);
-                console.log("     - " + instance.Measure.name + " : " + instance.name);*/
                 // GET MEASUREMENTS
                 var json = JSON.stringify({
                     "measureInstance": instance.name,
                     "page": 1,
                     "pageSize": 1
                 });
-                // console.log("JSON: " + json);
 
                 var headers = {
                     'Content-Type': 'application/json',
                     'Content-Length': json.length
                 };
                 var options = {
-                    host :  '194.2.241.244',
-                    path :  '/measure/api/measurement/find',
+                    host :  config.measure.host,
+                    path :  config.measure.measurementsPath,
                     method : 'POST',
                     headers: headers
                 };

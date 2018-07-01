@@ -1,3 +1,4 @@
+var config = require('../config/config');
 var efsm;
 EFSM = {
     create: function(options) {
@@ -82,7 +83,7 @@ EFSM = {
                         active_state.contextvariables["response_time_old"].value = msg.data.value;
                         console.log("response_time_old : " + active_state.contextvariables["response_time_old"].value);
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
             },
             {
                 from: 'init',
@@ -94,7 +95,7 @@ EFSM = {
                         active_state.contextvariables["bandwith_old"].value = msg.data.value;
                         console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
             },
             {
                 from: 'response_time1_received',
@@ -107,7 +108,7 @@ EFSM = {
                         console.log("response_time_old : " + active_state.contextvariables["response_time_old"].value);
                         console.log("response_time_new : " + active_state.contextvariables["response_time_new"].value);
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
             },
             {
                 from: 'bandwith1_received',
@@ -120,7 +121,7 @@ EFSM = {
                         console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                         console.log("bandwith_new : " + active_state.contextvariables["bandwith_new"].value);
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
             },
             {
                 from: 'response_time1_received',
@@ -137,7 +138,7 @@ EFSM = {
                         console.log("response_time_old : " + active_state.contextvariables["response_time_old"].value);
                         console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
             },
             {
                 from: 'response_time1_received',
@@ -154,7 +155,7 @@ EFSM = {
                         console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                         console.log("bandwith_new : " + active_state.contextvariables["bandwith_new"].value);
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
             },
             {
                 from: 'bandwith1_received',
@@ -170,7 +171,7 @@ EFSM = {
                         console.log("response_time_old : " + active_state.contextvariables["response_time_old"].value);
                         console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
             },
             {
                 from: 'bandwith1_received',
@@ -187,7 +188,7 @@ EFSM = {
                         console.log("bandwith_old : " + active_state.contextvariables["bandwith_old"].value);
                         console.log("response_time_new : " + active_state.contextvariables["response_time_new"].value);
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
             },
             {
                 from: 'response_time2_received',
@@ -211,7 +212,7 @@ EFSM = {
                             + " new bandwith : " + active_state.contextvariables["bandwith_new"].value;
                         publisher.publish('recommendations', JSON.stringify(msg));
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: 1000, name: 'to'}}]
             },
             {
                 from: 'bandwith2_received',
@@ -235,7 +236,7 @@ EFSM = {
                             + " new bandwith : " + active_state.contextvariables["bandwith_new"].value;
                         publisher.publish('recommendations', JSON.stringify(msg));
                     }},
-                    {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                    {fct: mmt.startTimer, opts: {timeout: 1000, name: 'to'}}]
             },
             // TODO response_time1 a recommendation, bandwith1 a recommendation
         ]

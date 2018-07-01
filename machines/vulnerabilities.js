@@ -1,3 +1,4 @@
+var config = require('../config/config');
 var efsm;
 EFSM = {
     create: function(options) {
@@ -69,7 +70,7 @@ EFSM = {
                                 console.log("security_rating : " + active_state.contextvariables["security_rating"].value);
                                 console.log("security_incidents : " + active_state.contextvariables["security_incidents"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'init',
@@ -82,7 +83,7 @@ EFSM = {
                                 console.log("security_rating : " + active_state.contextvariables["security_rating"].value);
                                 console.log("security_incidents : " + active_state.contextvariables["security_incidents"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'security_rating_received',
@@ -95,7 +96,7 @@ EFSM = {
                                 console.log("security_rating : " + active_state.contextvariables["security_rating"].value);
                                 console.log("security_incidents : " + active_state.contextvariables["security_incidents"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'security_incidents_received',
@@ -108,7 +109,7 @@ EFSM = {
                                 console.log("security_rating : " + active_state.contextvariables["security_rating"].value);
                                 console.log("security_incidents : " + active_state.contextvariables["security_incidents"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'security_rating_received',

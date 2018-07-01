@@ -195,8 +195,6 @@ function deleteProject(projectId) {
     })).then(models.Instance.destroy({
         where: {AnalysisId: null}
     }));
-
-
 }
 
 registerTool.start();

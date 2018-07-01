@@ -8,6 +8,8 @@ const development = {
         configurationURL: 'http://localhost:3000/config',
         configureURL: 'http://localhost:3000/configure/',
         historyURL: 'http://localhost:3000/history/',
+        measurementsCronTime: '*/600 * * * * *',
+        machineTimeout: 600
     },
     db: {
         dialect: 'mysql',
@@ -41,6 +43,8 @@ const test = {
         configurationURL: 'http://localhost:3000/config',
         configureURL: 'http://localhost:3000/configure/',
         historyURL: 'http://localhost:3000/history/',
+        measurementsCronTime: '*/600 * * * * *',
+        machineTimeout: 600
     },
     db: {
         dialect: 'mysql',
@@ -74,6 +78,8 @@ const production = {
         configurationURL: 'http://localhost:3000/config',
         configureURL: 'http://localhost:3000/configure/',
         historyURL: 'http://localhost:3000/history/',
+        measurementsCronTime: '*/600 * * * * *',
+        machineTimeout: 600
     },
     db: {
         dialect: 'mysql',

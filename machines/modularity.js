@@ -1,3 +1,4 @@
+var config = require('../config/config');
 var efsm;
 EFSM = {
     create: function(options) {
@@ -71,7 +72,7 @@ EFSM = {
                                 console.log("class_complexity : " + active_state.contextvariables["class_complexity"].value);
                         }
                         },
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'init',
@@ -85,7 +86,7 @@ EFSM = {
                                 console.log("maintainability_rating : " + active_state.contextvariables["maintainability_rating"].value);
                                 console.log("class_complexity : " + active_state.contextvariables["class_complexity"].value)}
                         },
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'maintainability_rating_received',
@@ -111,7 +112,7 @@ EFSM = {
                                     + " threshold : " + active_state.contextvariables["threshold"].value;
                                 publisher.publish('recommendations', JSON.stringify(msg));
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 2000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: 1000, name: 'to'}}]
                     },
                     {
                         from: 'class_complexity_received',
@@ -137,7 +138,7 @@ EFSM = {
                                     + " threshold : " + active_state.contextvariables["threshold"].value;
                                 publisher.publish('recommendations', JSON.stringify(msg));
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 2000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: 1000, name: 'to'}}]
                     },
                     // if the input is a new class_complexity the value is updated
                     {

@@ -1,3 +1,4 @@
+var config = require('../config/config');
 var efsm;
 EFSM = {
     create: function(options) {
@@ -76,7 +77,7 @@ EFSM = {
                                 console.log("issues_by_severity : " + active_state.contextvariables["issues_by_severity"].value);
                                 console.log("reliability_rating : " + active_state.contextvariables["reliability_rating"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'init',
@@ -89,7 +90,7 @@ EFSM = {
                                 console.log("issues_by_severity : " + active_state.contextvariables["issues_by_severity"].value);
                                 console.log("reliability_rating : " + active_state.contextvariables["reliability_rating"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'issues_by_severity_received',
@@ -102,7 +103,7 @@ EFSM = {
                                 console.log("issues_by_severity : " + active_state.contextvariables["issues_by_severity"].value);
                                 console.log("reliability_rating : " + active_state.contextvariables["reliability_rating"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'reliability_rating_received',
@@ -115,7 +116,7 @@ EFSM = {
                                 console.log("issues_by_severity : " + active_state.contextvariables["issues_by_severity"].value);
                                 console.log("reliability_rating : " + active_state.contextvariables["reliability_rating"].value);
                             }},
-                            {fct: mmt.startTimer, opts: {timeout: 10000, name: 'to'}}]
+                            {fct: mmt.startTimer, opts: {timeout: config.app.machineTimeout, name: 'to'}}]
                     },
                     {
                         from: 'issues_by_severity_received',
