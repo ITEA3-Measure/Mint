@@ -1,9 +1,12 @@
+var projectInstances = [];
+var instances = {};
 // DOM Ready =============================================================
 $(document).ready(function() {
-    console.log("DOM READY");
+    getProjectInstances();
 });
 // Configuration Functions =============================================================
 $('button.edit-machine').click(function(e) {
+    instances = {};
     var machineId = $(this).closest('tr').data('id');
     var analysis = analyses[machineId];
     var list = analysis.Instances;
@@ -16,10 +19,33 @@ $('button.edit-machine').click(function(e) {
     $("#instancesModalTable tbody").empty();
     for (var i = 0; i < list.length; i++) {
         var color = "";
-        if(list[i].name == "") color = "table-danger";
+        if(list[i].name == null || list[i].name == "" ) color = "table-danger";
+        var id = "instanceDropDown"+list[i].id;
+/*        $('#instancesModalTable tbody').append(
+            '<tr data-id =' + list[i].id + ' class=' + color + '><td>'+ list[i].Measure.name +'</td><td>'
+            +list[i].name+'</td></tr>');*/
         $('#instancesModalTable tbody').append(
             '<tr data-id =' + list[i].id + ' class=' + color + '><td>'+ list[i].Measure.name +'</td><td>'
-            +list[i].name+'</td></tr>');
+            +'<select class="form-control" id='+id+'><option value="">-- Select --</option></select>'+'</td></tr>');
+        var $dropdown = $('#'+id);
+        $.each(projectInstances, function() {
+            $dropdown.append($("<option />").val(this.instanceName).text(this.instanceName));
+        });
+        $dropdown.change(function () {
+           var val = this.value;
+           var id = this.closest('tr').getAttribute("data-id");
+           instances[id] = val;
+           if(val == "") {
+               this.closest('tr').setAttribute('class','table-danger');
+           } else {
+               this.closest('tr').setAttribute('class','');
+           }
+        });
+        if(list[i].name != null && list[i].name != "" ) {
+            $dropdown.val(list[i].name);
+        } else {
+            $dropdown.val("");
+        }
 
     }
 });
@@ -33,7 +59,8 @@ $('#editModal').find('form').submit(function (e) {
             name : modal.find('#machineName').val(),
             description : modal.find('#machineDescription').val(),
             customMessage : modal.find('#machineRecommendation').val(),
-            customThreshold : modal.find('#machineThreshold').val()
+            customThreshold : modal.find('#machineThreshold').val(),
+            instances: JSON.stringify(instances)
         }).done(function () {
         location.reload(true);
     //    done($('#editModal  .close').click());
@@ -66,6 +93,14 @@ $('button.turn-on').click(function(e) {
         });
     location.reload(true);
 });
+
+function getProjectInstances() {
+    $.get('/configure/instances/'+projectId, function(data, response) {
+        projectInstances = data;
+    }).fail(function () {
+        console.log("fail");
+    });
+}
 
 function showMore(id){
     document.getElementById(id+'Overflow').className='';

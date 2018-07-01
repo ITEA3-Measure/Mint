@@ -48,7 +48,8 @@ router.get('/:project', function (req, res, next) {
         }
         res.render('config', {
             title: 'Configuration',
-            analyses: result
+            analyses: result,
+            projectId: projectId
         })
     });
 });
@@ -56,7 +57,6 @@ router.get('/:project', function (req, res, next) {
 router.post('/analysis/:analysisId', function (req, res, next) {
     var analysisId = req.params.analysisId;
     console.log("POST req.params.analysisId : " + analysisId);
-
     var updatedValues;
     if(req.body.status) {
         updateValues = {
@@ -64,6 +64,14 @@ router.post('/analysis/:analysisId', function (req, res, next) {
         };
     }
     else {
+        var newInstances = JSON.parse(req.body.instances);
+        console.log("newInstances : " + newInstances);
+        for(var id in newInstances) {
+            models.Instance.update(
+                {name: newInstances[id].toString()},
+                {where: {id : parseFloat(id)}});
+            console.log(id + " : " + newInstances[id]);
+        }
         updateValues = {
             name: req.body.name,
             description: req.body.description,
@@ -98,5 +106,41 @@ router.post('/analysis/:analysisId', function (req, res, next) {
         })
     });
 });
+
+router.get('/instances/:project', function (req, res, next) {
+    var projectId = req.params.project;
+    models.Project.findById(projectId).then(function (value) {
+        // query all measurements of the project
+        var headers = {
+            'Content-Type': 'application/json'
+        };
+        var options = {
+            host: config.measure.host,
+            port: config.measure.port,
+            path: config.measure.projectInstances + value.measureProjectId,
+            method: 'GET',
+            headers: headers
+        };
+
+        var callback = function (response) {
+            var body = '';
+            response.on("data", function (data) {
+                body += data;
+            });
+            response.on('end', function () {
+                // console.log("BODY end: " + body);
+                body = JSON.parse(body);
+                res.send(body);
+            });
+            response.on('error', function () {
+                console.log("error");
+            });
+            // console.log('response statusCode', response.statusCode);
+        };
+
+        http.request(options, callback).end();
+    });
+});
+
 
 module.exports = router;
