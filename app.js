@@ -12,8 +12,8 @@ var configurationRouter = require('./routes/configuration');
 var historyRouter = require('./routes/history');
 var alertMonitor = require('./routes/alertMonitor');
 var machines = require('./routes/machinesCron');
-var subscriber = require('./examples/subscriber');
-var measurements = require('./examples/cronGetMeasurements');
+var subscriber = require('./routes/subscriber');
+var measurements = require('./routes/cronGetMeasurements');
 
 machines.init();
 toolRegistrationRouter.init();
@@ -36,7 +36,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/configure', configurationRouter);
 app.use('/history', historyRouter);
-/*alertMonitor.registerTool.start();*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

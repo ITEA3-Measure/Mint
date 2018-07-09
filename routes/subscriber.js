@@ -1,7 +1,7 @@
 var config = require('../config/config');
 var redis = require("redis");
 var util = require("util");
-var models  = require('../models');
+var models  = require('../models/index');
 
 var settings = {
     eventbus: {

@@ -6,7 +6,9 @@
     "start": "node ./bin/www",
     "start:dev": "SET NODE_ENV=development & node ./bin/www",
     "start:prod": "SET NODE_ENV=production & node ./bin/www",
-    "start:test": "SET NODE_ENV=test & node ./bin/www"
+    "start:test": "SET NODE_ENV=test & node ./bin/www",
+    "seeds:up": "sequelize --config config/config.json db:seed:undo:all & sequelize --config config/config.json db:seed:all",
+    "seeds:down": "sequelize --config config/config.json db:seed:undo:all"
   },
   "engines": {
     "node": "^8.9.4"
