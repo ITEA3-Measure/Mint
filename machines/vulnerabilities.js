@@ -10,12 +10,12 @@ EFSM = {
 
         efsm = new mmt.EFSM(
             {
-                id: "test_security",
+                id: "vulnerabilities",
                 hascontext: true,
                 logdata: true,
                 onCreation: function () {},
                 onDeletion: function () {},
-                events: ['new_SecurityRatingBySonarCube', 'new_MMT-SecurityIncidents', 'timeout.to'],
+                events: ['new_SecurityRatingBySonarCube_'+analysisId, 'new_MMT-SecurityIncidents_'+analysisId, 'timeout.to'],
                 states: [
                     {
                         id: 'init'
@@ -62,7 +62,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'security_rating_received',
-                        event: 'new_SecurityRatingBySonarCube',
+                        event: 'new_SecurityRatingBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -75,7 +75,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'security_incidents_received',
-                        event: 'new_MMT-SecurityIncidents',
+                        event: 'new_MMT-SecurityIncidents_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -88,7 +88,7 @@ EFSM = {
                     {
                         from: 'security_rating_received',
                         to: 'security_rating_received',
-                        event: 'new_SecurityRatingBySonarCube',
+                        event: 'new_SecurityRatingBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -101,7 +101,7 @@ EFSM = {
                     {
                         from: 'security_incidents_received',
                         to: 'security_incidents_received',
-                        event: 'new_MMT-SecurityIncidents',
+                        event: 'new_MMT-SecurityIncidents_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -114,7 +114,7 @@ EFSM = {
                     {
                         from: 'security_rating_received',
                         to: 'recommendation',
-                        event: 'new_MMT-SecurityIncidents',
+                        event: 'new_MMT-SecurityIncidents_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["security_incidents"].value = msg.data.value;
                                 var security_rating = active_state.contextvariables["security_rating"].value;
@@ -138,7 +138,7 @@ EFSM = {
                     {
                         from: 'security_incidents_received',
                         to: 'recommendation',
-                        event: 'new_SecurityRatingBySonarCube',
+                        event: 'new_SecurityRatingBySonarCube_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["security_rating"].value = msg.data.value;
                                 var security_rating = active_state.contextvariables["security_rating"].value;
@@ -174,7 +174,7 @@ EFSM = {
                     {
                         from: 'security_rating_received',
                         to: 'init',
-                        event: 'new_MMT-SecurityIncidents',
+                        event: 'new_MMT-SecurityIncidents_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["security_incidents"].value = msg.data.value;
                                 var security_rating = active_state.contextvariables["security_rating"].value;
@@ -204,7 +204,7 @@ EFSM = {
                     {
                         from: 'security_rating_received',
                         to: 'init',
-                        event: 'new_MMT-SecurityIncidents',
+                        event: 'new_MMT-SecurityIncidents_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["security_rating"].value = msg.data.value;
                                 var security_rating = active_state.contextvariables["security_rating"].value;

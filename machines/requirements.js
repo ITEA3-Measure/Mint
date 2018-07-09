@@ -10,12 +10,12 @@ EFSM = {
 
         efsm = new mmt.EFSM(
             {
-                id: "test_requirements",
+                id: "requirements",
                 hascontext: true,
                 logdata: true,
                 onCreation: function () {},
                 onDeletion: function () {},
-                events: ['new_IssuesBySonarCube', 'new_ReopenedIssuesBySonarCube', 'timeout.to'],
+                events: ['new_IssuesBySonarCube_'+analysisId, 'new_ReopenedIssuesBySonarCube_'+analysisId, 'timeout.to'],
                 states: [
                     {
                         id: 'init'
@@ -66,7 +66,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'number_issues_received',
-                        event: 'new_IssuesBySonarCube',
+                        event: 'new_IssuesBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -79,7 +79,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'number_reopen_issues_received',
-                        event: 'new_ReopenedIssuesBySonarCube',
+                        event: 'new_ReopenedIssuesBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -92,7 +92,7 @@ EFSM = {
                     {
                         from: 'number_issues_received',
                         to: 'number_issues_received',
-                        event: 'new_IssuesBySonarCube',
+                        event: 'new_IssuesBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -103,7 +103,7 @@ EFSM = {
                     {
                         from: 'number_reopen_issues_received',
                         to: 'number_reopen_issues_received',
-                        event: 'new_ReopenedIssuesBySonarCube',
+                        event: 'new_ReopenedIssuesBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -114,7 +114,7 @@ EFSM = {
                     {
                         from: 'number_reopen_issues_received',
                         to: 'recommendation',
-                        event: 'new_IssuesBySonarCube',
+                        event: 'new_IssuesBySonarCube_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["number_issues"].value = msg.data.value;
                                 if(active_state.contextvariables["number_issues"].value > 0 && active_state.contextvariables["number_reopen_issues"].value > 0) {
@@ -140,7 +140,7 @@ EFSM = {
                     {
                         from: 'number_issues_received',
                         to: 'recommendation',
-                        event: 'new_ReopenedIssuesBySonarCube',
+                        event: 'new_ReopenedIssuesBySonarCube_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["number_reopen_issues"].value = msg.data.value;
                                 if(active_state.contextvariables["number_issues"].value > 0 && active_state.contextvariables["number_reopen_issues"].value > 0) {

@@ -10,12 +10,12 @@ EFSM = {
 
         efsm = new mmt.EFSM(
             {
-                id: "test_modular_design",
+                id: "modularity",
                 hascontext: true,
                 logdata: true,
                 onCreation: function () {},
                 onDeletion: function () {},
-                events: ['new_MaintainabilityRatingBySonarCube', 'new_ClassComplexityBySonarCube', 'timeout.to'],
+                events: ['new_MaintainabilityRatingBySonarCube_'+analysisId, 'new_ClassComplexityBySonarCube_'+analysisId, 'timeout.to'],
                 states: [
                     {
                         id: 'init'
@@ -63,7 +63,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'maintainability_rating_received',
-                        event: 'new_MaintainabilityRatingBySonarCube',
+                        event: 'new_MaintainabilityRatingBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -77,7 +77,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'class_complexity_received',
-                        event: 'new_ClassComplexityBySonarCube',
+                        event: 'new_ClassComplexityBySonarCube_'+analysisId,
                         // conditions: [{fct: function() {return true}}],
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
@@ -91,7 +91,7 @@ EFSM = {
                     {
                         from: 'maintainability_rating_received',
                         to: 'recommendation',
-                        event: 'new_ClassComplexityBySonarCube',
+                        event: 'new_ClassComplexityBySonarCube_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["class_complexity"].value = msg.data.value;
                                 console.log("maintainability_rating : " + active_state.contextvariables["maintainability_rating"].value);
@@ -117,7 +117,7 @@ EFSM = {
                     {
                         from: 'class_complexity_received',
                         to: 'recommendation',
-                        event: 'new_MaintainabilityRatingBySonarCube',
+                        event: 'new_MaintainabilityRatingBySonarCube_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["maintainability_rating"].value = msg.data.value;
                                 console.log("maintainability_rating : " + active_state.contextvariables["maintainability_rating"].value);
@@ -144,7 +144,7 @@ EFSM = {
                     {
                         from: 'class_complexity_received',
                         to: 'class_complexity_received',
-                        event: 'new_ClassComplexityBySonarCube',
+                        event: 'new_ClassComplexityBySonarCube_'+analysisId,
                         conditions: [],
                         actions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["class_complexity"].value = msg.data.value;
@@ -154,7 +154,7 @@ EFSM = {
                     {
                         from: 'maintainability_rating_received',
                         to: 'maintainability_rating_received',
-                        event: 'new_MaintainabilityRatingBySonarCube',
+                        event: 'new_MaintainabilityRatingBySonarCube_'+analysisId,
                         conditions: [],
                         actions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["maintainability_rating"].value = msg.data.value;

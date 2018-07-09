@@ -92,11 +92,11 @@ const production = {
     measure: {
         host: '',
         port: '',
-        alertPath: '/api/analysis/alert/list/',
-        registrationPath: '/api/analysis/register',
-        configurePath: '/api/analysis/configure',
+        alertPath: '/measure/api/analysis/alert/list/',
+        registrationPath: '/measure/api/analysis/register',
+        configurePath: '/measure/api/analysis/configure',
         measurementsPath: '/measure/api/measurement/find',
-        projectInstances: 'measure/api/project-measure-instances/'
+        projectInstances: '/measure/api/project-measure-instances/'
     },
     redis: {
         type: 'redis',

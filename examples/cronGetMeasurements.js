@@ -77,7 +77,7 @@ var cronMetric = new CronJob({
                             // TODO: REMOVE RANDOM
                             var rand = measurement.value + Math.floor(Math.random() * 100);
                             console.log("-- " + measurement.postDate + " - " + measurement.value + " - random : " + rand);
-                            publisher.publish('new_'+instance.Measure.name, JSON.stringify(MMT.attributeJSON(measurement.postDate, instance.Measure.name, rand, [], 'i1')));
+                            publisher.publish('new_'+instance.Measure.name+"_"+instance.Analysis.id, JSON.stringify(MMT.attributeJSON(measurement.postDate, instance.Measure.name, rand, [], 'i1')));
                         }
                     });
                 });

@@ -10,12 +10,12 @@ EFSM = {
 
         efsm = new mmt.EFSM(
             {
-                id: "test_code_review",
+                id: "codeQuality",
                 hascontext: true,
                 logdata: true,
                 onCreation: function () {},
                 onDeletion: function () {},
-                events: ['new_IssuesBySeverityBySonarCube', 'new_ReliabilityRatingBySonarCube', 'new_uncovered_conditions', 'timeout.to'],
+                events: ['new_IssuesBySeverityBySonarCube_'+analysisId, 'new_ReliabilityRatingBySonarCube_'+analysisId, 'timeout.to'],
                 states: [
                     {
                         id: 'init'
@@ -69,7 +69,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'issues_by_severity_received',
-                        event: 'new_IssuesBySeverityBySonarCube',
+                        event: 'new_IssuesBySeverityBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -82,7 +82,7 @@ EFSM = {
                     {
                         from: 'init',
                         to: 'reliability_rating_received',
-                        event: 'new_ReliabilityRatingBySonarCube',
+                        event: 'new_ReliabilityRatingBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -95,7 +95,7 @@ EFSM = {
                     {
                         from: 'issues_by_severity_received',
                         to: 'issues_by_severity_received',
-                        event: 'new_IssuesBySeverityBySonarCube',
+                        event: 'new_IssuesBySeverityBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -108,7 +108,7 @@ EFSM = {
                     {
                         from: 'reliability_rating_received',
                         to: 'reliability_rating_received',
-                        event: 'new_ReliabilityRatingBySonarCube',
+                        event: 'new_ReliabilityRatingBySonarCube_'+analysisId,
                         actions: [{fct: function (active_state, evt, msg){
                                 console.log('>>>>>>>>>>>>>>> : ' + active_state.state.id);
                                 console.log(evt);
@@ -121,7 +121,7 @@ EFSM = {
                     {
                         from: 'issues_by_severity_received',
                         to: 'recommendation',
-                        event: 'new_ReliabilityRatingBySonarCube',
+                        event: 'new_ReliabilityRatingBySonarCube_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["reliability_rating"].value = msg.data.value;
                                 var issues_by_severity = active_state.contextvariables["issues_by_severity"].value;
@@ -155,7 +155,7 @@ EFSM = {
                     {
                         from: 'reliability_rating_received',
                         to: 'recommendation',
-                        event: 'new_IssuesBySeverityBySonarCube',
+                        event: 'new_IssuesBySeverityBySonarCube_'+analysisId,
                         conditions: [{fct: function(active_state, evt, msg) {
                                 active_state.contextvariables["issues_by_severity"].value = msg.data.value;
                                 var issues_by_severity = active_state.contextvariables["issues_by_severity"].value;
