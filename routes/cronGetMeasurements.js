@@ -6,7 +6,7 @@ var CronJob = require('cron').CronJob;
 var mmt = require('../utils/mmt-correlator/src/efsm');
 var redis = require("redis");
 var util = require("util");
-var models  = require('../models/index');
+var models  = require('../models');
 
 var settings = {
     eventbus: {
