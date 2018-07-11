@@ -23,3 +23,5 @@ MINT is integrated into the MEASURE platform through the MEASURE Analysis Platfo
 
 **Mint recommendations**
 ![](https://www.dropbox.com/s/egx9bptojue2jus/recommendations-1.PNG?dl=1)
+
+[![Alt text](https://img.youtube.com/vi/VID/0.jpg)](https://www.youtube.com/watch?v=DSHDJgQUhlU)
