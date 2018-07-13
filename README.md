@@ -24,4 +24,5 @@ MINT is integrated into the MEASURE platform through the MEASURE Analysis Platfo
 **Mint recommendations**
 ![](https://github.com/ersilva/Mint/blob/master/public/images/recommendations-1.PNG)
 
+**Mint demo video**
 [![Alt text](https://img.youtube.com/vi/DSHDJgQUhlU/0.jpg)](https://www.youtube.com/watch?v=DSHDJgQUhlU)
